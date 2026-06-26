@@ -21,16 +21,6 @@ npm run build      # static SPA into dist/
 npm run export     # PDF fallback (foss4g-2026-talk.pdf, via playwright-chromium)
 ```
 
-## CI / security
-
-On every push to `main`, [`.github/workflows/deploy.yaml`](./.github/workflows/deploy.yaml) builds the
-deck and deploys it to **GitHub Pages**. A second workflow,
-[`zizmor.yml`](./.github/workflows/zizmor.yml), audits all workflows with
-[zizmor](https://docs.zizmor.sh) and fails on any finding — run it locally with
-`uvx zizmor .` (same scope as CI, which also audits `.github/dependabot.yml`). The workflows follow GitHub Actions hardening practice: per-job least
-privilege, SHA-pinned actions (kept current by Dependabot, [`.github/dependabot.yml`](./.github/dependabot.yml)),
-and no template-injection in `run:` blocks.
-
 ## Regenerating the assets
 
 The deck's diagrams and gap heatmap are produced by deterministic scripts in [`scripts/`](./scripts)
@@ -58,18 +48,15 @@ a live `argo-stac-eo-pipeline` cluster; the recorded results are committed here.
 - **Slides:** [`slides.md`](./slides.md) — content + per-slide layout/notes.
 - **Theme:** [`theme/`](./theme) — Development Seed's Slidev theme (layouts, components, brand styles).
 - **Assets:** [`public/`](./public) — diagrams (`*.svg`, `heatmap.png`), screencast clips
-  (`clips/*.gif`), UI stills, the repo QR, and the Landsat/Sentinel cover/divider imagery under
-  `public/images/theme/`. All committed so the deck builds standalone; the diagrams are *generated* by
-  [`scripts/`](./scripts) here, the clips/stills are recordings.
-- **Generators + tooling:** [`scripts/`](./scripts) — the diagram generators (`make_*.py`,
-  `gen-ladders.py`, `seed_constants.py`) and the clip/still recording tooling
-  (`record_clip.sh`, `clip_demo.sh`, `annotate_clip.py`, `make_screencast_data.py`) plus
-  [`playwright/`](./playwright). See *Regenerating the assets* above. Tests in [`tests/`](./tests).
+  (`clips/*.gif`), UI stills, the repo QR, and cover/divider imagery under `public/images/theme/`.
+  All committed; diagrams are *generated* by [`scripts/`](./scripts), clips/stills are recordings.
+- **Generators + tooling:** [`scripts/`](./scripts) — diagram generators (`make_*.py`,
+  `gen-ladders.py`, `seed_constants.py`), clip/still recording scripts, and [`playwright/`](./playwright).
+  See *Regenerating the assets* above. Tests in [`tests/`](./tests).
 - **Imagery provenance:** [`recommended-images.yaml`](./recommended-images.yaml) — source + description
   for each theme image (vetted for a public repo).
-- **Fonts:** [`public/fonts/`](./public/fonts) — Roboto + Roboto Mono (latin) self-hosted as `woff2`
-  (SIL Open Font License 1.1, licences vendored alongside) so the deck renders with no Google Fonts
-  network call. DevSeed's proprietary Antarctica font is intentionally not included.
+- **Fonts:** [`public/fonts/`](./public/fonts) — Roboto + Roboto Mono self-hosted as `woff2`
+  (SIL OFL 1.1, licences vendored); no Google Fonts network call. Antarctica (proprietary) not included.
 - **Spoken script:** [`docs/script.md`](./docs/script.md) — the single source for the spoken track; the
   deck's presenter notes are derived cue cards. The storyboard, screencast scripts, anecdote cheatsheet,
   and the build plan/todo are speaker-only and live in the private companion repo `foss4g2026-talk-private`.

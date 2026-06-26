@@ -709,28 +709,8 @@ The ladder is **orchestrator-agnostic**: Airflow or Prefect could climb it too. 
 -->
 
 ---
-layout: center
-class: text-center
----
-
-# Clone & run tonight
-
-<div flex justify-center my-3>
-  <img :src="'./repo-qr.png'" class="h-60" alt="QR code linking to the talk's GitHub repository" />
-</div>
-
-**github.com/lhoupert/argo-stac-eo-pipeline**
-
-`make up && make demo STAGE=01` runs the whole ladder, on your laptop, with Docker.
-
-<LogoHorPos position="top-left" height="30px" />
-
-<!--
-- "Have a look at where your own work sits, and maybe climb one rung. The repo's right there, and I'd genuinely love your questions."
--->
-
----
-layout: two-cols
+layout: image-right
+image: /images/theme/landsat8-klyuchevskaya-kamchatka.jpg
 ---
 
 # Questions?
@@ -739,14 +719,10 @@ _one rung at a time_
 
 **github.com/lhoupert/argo-stac-eo-pipeline**
 
+`make up && make demo STAGE=01` — the whole ladder, on your laptop, with Docker.
+
 <div mt-6>
   <img :src="'./repo-qr.png'" class="h-44" alt="QR code linking to the talk's GitHub repository" />
-</div>
-
-::right::
-
-<div h-full flex items-center justify-center pr-2>
-  <img :src="'./clips/recap.gif'" class="max-h-90 w-auto object-contain" alt="Recap animation: the five-rung ladder highlighting rung 0 up through rung 4 in turn" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
@@ -758,4 +734,5 @@ _one rung at a time_
   the prod profile is where I'd start; no war stories at volume." Don't bluff depth.
 - Other likely ones: ingestion vs ARD boundary; how the synthetic world maps to real missions;
   cost/ops of running Argo.
+- "Have a look at where your own work sits, and maybe climb one rung."
 -->
