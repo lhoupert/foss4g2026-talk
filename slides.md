@@ -599,7 +599,7 @@ class: text-center
 -->
 
 ---
-layout: image-left
+layout: image-right
 image: /images/theme/sentinel2a-southern-tibetan-plateau.jpg
 ---
 
