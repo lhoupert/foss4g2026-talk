@@ -42,9 +42,7 @@ jobs:
             ${{ runner.os }}-slidev-
 
       - name: Build
-        env:
-          REPO_NAME: ${{ github.event.repository.name }}
-        run: npm run build -- --base "/$REPO_NAME/"
+        run: npm run build -- --base "./"
 
       - name: Setup Pages
         uses: actions/configure-pages@1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d # v4
