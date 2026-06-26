@@ -1,0 +1,17 @@
+[project]
+name = "foss4g2026-talk-assets"
+version = "0.1.0"
+description = "Deterministic asset generators + content tests for the FOSS4G 2026 Slidev deck"
+requires-python = ">=3.12"
+# Pinned to the versions the committed assets in public/ were generated with, so re-running the
+# generators reproduces them byte-for-byte. `cairosvg` (recap GIF) also needs the system `cairo`
+# library; the recap is committed, so cairosvg is only needed to regenerate it.
+dependencies = [
+    "pillow==12.2.0",
+    "qrcode[pil]==8.2",
+    "cairosvg>=2.7",
+    "pytest>=8",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

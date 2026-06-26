@@ -1,0 +1,34 @@
+name: GitHub Actions security (zizmor)
+
+# Audits every workflow in .github/workflows with zizmor (https://docs.zizmor.sh)
+# and fails the run on any finding, so CI security regressions get caught at review time.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: zizmor-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  zizmor:
+    name: Audit workflows
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+        with:
+          persist-credentials: false
+
+      - name: Run zizmor
+        # GH_TOKEN enables the online audits (known-vulnerable / stale action refs);
+        # contents:read is enough — zizmor only reads public action repos + the advisory DB.
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: pipx run zizmor .
