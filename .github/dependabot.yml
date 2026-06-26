@@ -10,3 +10,7 @@ updates:
     # (possibly compromised) action version isn't pulled in immediately.
     cooldown:
       default-days: 7
+    groups:
+      github-actions:
+        patterns:
+          - "*"
