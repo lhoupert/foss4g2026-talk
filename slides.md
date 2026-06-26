@@ -7,6 +7,7 @@ info: |
   Companion repo: github.com/lhoupert/argo-stac-eo-pipeline
 highlighter: shiki
 mdc: true
+routerMode: hash
 favicon: /meta/favicon.png
 addons:
   - slidev-addon-qrcode
