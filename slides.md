@@ -67,7 +67,7 @@ class: text-center
 # A five-rung ladder
 
 <div flex justify-center my-2>
-  <img :src="'/ladder.svg'" class="h-100 w-auto object-contain" alt="The maturity ladder, rungs 0 to 4" />
+  <img :src="'./ladder.svg'" class="h-100 w-auto object-contain" alt="The maturity ladder, rungs 0 to 4" />
 </div>
 
 Five rungs, from a laptop cron job at the bottom to a pipeline that fills its own gaps at the top.
@@ -126,7 +126,7 @@ dim: true
 # Rung 0
 ## The _actual_ cron job
 
-<img :src="'/ladder-rung0.svg'" class="mini-ladder" alt="you are here: rung 0 of the maturity ladder" />
+<img :src="'./ladder-rung0.svg'" class="mini-ladder" alt="you are here: rung 0 of the maturity ladder" />
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
@@ -141,7 +141,7 @@ layout: default
 
 # Where I started
 
-<img :src="'/ladder-rung0.svg'" class="corner-ladder" alt="you are here: rung 0" />
+<img :src="'./ladder-rung0.svg'" class="corner-ladder" alt="you are here: rung 0" />
 
 ```bash
 # laptop crontab, fires at 03:00; nowhere to look when it fails
@@ -167,7 +167,7 @@ dim: true
 # Rung 1
 ## Wrapping the **same script** in Argo
 
-<img :src="'/ladder-rung1.svg'" class="mini-ladder" alt="you are here: rung 1 of the maturity ladder" />
+<img :src="'./ladder-rung1.svg'" class="mini-ladder" alt="you are here: rung 1 of the maturity ladder" />
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
@@ -185,7 +185,7 @@ layout: default
 <div class="grid gap-10 items-center mt-6" style="grid-template-columns: 3fr 2fr">
 
 <div flex justify-center>
-  <img :src="'/flow-rung1.svg'" class="max-h-90 w-auto object-contain" alt="The unchanged ingest unit of work, wrapped by an Argo CronWorkflow that adds retries, a web UI, and a STAC logbook" />
+  <img :src="'./flow-rung1.svg'" class="max-h-90 w-auto object-contain" alt="The unchanged ingest unit of work, wrapped by an Argo CronWorkflow that adds retries, a web UI, and a STAC logbook" />
 </div>
 
 <div class="text-xl">
@@ -196,7 +196,7 @@ The ingest function is **unchanged**; Argo wraps it with **retries**, a **web UI
 
 </div>
 
-<img :src="'/ladder-rung1.svg'" class="corner-ladder" alt="you are here: rung 1" />
+<img :src="'./ladder-rung1.svg'" class="corner-ladder" alt="you are here: rung 1" />
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
@@ -216,7 +216,7 @@ layout: default
 
 # It's this little: a schedule plus the image you already have
 
-<img :src="'/ladder-rung1.svg'" class="corner-ladder" alt="you are here: rung 1" />
+<img :src="'./ladder-rung1.svg'" class="corner-ladder" alt="you are here: rung 1" />
 
 ```yaml
 kind: CronWorkflow          # Argo: cron, but supervised
@@ -245,10 +245,10 @@ class: text-center
 
 # Retries: a 3 a.m. blip, recovered
 
-<img :src="'/ladder-rung1.svg'" class="corner-ladder" alt="you are here: rung 1" />
+<img :src="'./ladder-rung1.svg'" class="corner-ladder" alt="you are here: rung 1" />
 
 <div flex justify-center my-2>
-  <img :src="'/clips/rung1-retry.gif'" class="h-80 w-auto object-contain rounded" alt="Argo UI workflow graph: ingest(0) failed (red), the automatic retry ingest(1) succeeded (green); the day is recovered, unattended" />
+  <img :src="'./clips/rung1-retry.gif'" class="h-80 w-auto object-contain rounded" alt="Argo UI workflow graph: ingest(0) failed (red), the automatic retry ingest(1) succeeded (green); the day is recovered, unattended" />
 </div>
 
 _ingest(0) ✗ → ingest(1) ✓ · recovered, unattended_
@@ -277,7 +277,7 @@ and understands what happened, without touching your machine.
 ::right::
 
 <div h-full flex items-center justify-center pr-2>
-  <img :src="'/argo-ui-still.png'" class="max-h-100 w-auto object-contain rounded shadow-lg" alt="The Argo Workflows web UI: a workflow step graph with the failed step marked red and logs one click away" />
+  <img :src="'./argo-ui-still.png'" class="max-h-100 w-auto object-contain rounded shadow-lg" alt="The Argo Workflows web UI: a workflow step graph with the failed step marked red and logs one click away" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
@@ -296,7 +296,7 @@ layout: default
 
 # Every item lands in a **STAC logbook** you can browse
 
-<img :src="'/ladder-rung1.svg'" class="corner-ladder" alt="you are here: rung 1" />
+<img :src="'./ladder-rung1.svg'" class="corner-ladder" alt="you are here: rung 1" />
 
 <div class="grid gap-10 items-center mt-6" style="grid-template-columns: 2fr 3fr">
 
@@ -309,7 +309,7 @@ _(Hold that thought.)_ In a few rungs this logbook wakes up and starts deciding 
 </div>
 
 <div flex justify-center>
-  <img :src="'/stac-logbook-tight.png'" class="w-full object-contain rounded shadow-lg" alt="stac-browser showing the ingested collections and their temporal extents; the catalog as a queryable logbook" />
+  <img :src="'./stac-logbook-tight.png'" class="w-full object-contain rounded shadow-lg" alt="stac-browser showing the ingested collections and their temporal extents; the catalog as a queryable logbook" />
 </div>
 
 </div>
@@ -331,7 +331,7 @@ dim: true
 # Rung 2
 ## Three years, not just last night
 
-<img :src="'/ladder-rung2.svg'" class="mini-ladder" alt="you are here: rung 2 of the maturity ladder" />
+<img :src="'./ladder-rung2.svg'" class="mini-ladder" alt="you are here: rung 2 of the maturity ladder" />
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
@@ -347,12 +347,12 @@ layout: default
 
 # Fan-out: the same step, side by side
 
-<img :src="'/ladder-rung2.svg'" class="corner-ladder" alt="you are here: rung 2" />
+<img :src="'./ladder-rung2.svg'" class="corner-ladder" alt="you are here: rung 2" />
 
 <div class="grid gap-10 items-center mt-6" style="grid-template-columns: 3fr 2fr">
 
 <div flex justify-center>
-  <img :src="'/flow-rung2.svg'" class="max-h-90 w-auto object-contain" alt="withItems fans the same step across thirty days, capped at ten in flight by the parallelism limit" />
+  <img :src="'./flow-rung2.svg'" class="max-h-90 w-auto object-contain" alt="withItems fans the same step across thirty days, capped at ten in flight by the parallelism limit" />
 </div>
 
 <div class="text-xl">
@@ -379,10 +379,10 @@ class: text-center
 
 # A month of backfill, politely
 
-<img :src="'/ladder-rung2.svg'" class="corner-ladder" alt="you are here: rung 2" />
+<img :src="'./ladder-rung2.svg'" class="corner-ladder" alt="you are here: rung 2" />
 
 <div flex justify-center my-2>
-  <img :src="'/clips/rung2-fanout-still.png'" class="max-h-85 w-auto object-contain rounded shadow" alt="A month of backfill fanned out in parallel, never more than ten ingests running at once" />
+  <img :src="'./clips/rung2-fanout-still.png'" class="max-h-85 w-auto object-contain rounded shadow" alt="A month of backfill fanned out in parallel, never more than ten ingests running at once" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
@@ -423,7 +423,7 @@ dim: true
 # Rung 3
 ## The logbook _wakes up_
 
-<img :src="'/ladder-rung3.svg'" class="mini-ladder" alt="you are here: rung 3 of the maturity ladder" />
+<img :src="'./ladder-rung3.svg'" class="mini-ladder" alt="you are here: rung 3 of the maturity ladder" />
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
@@ -439,7 +439,7 @@ layout: default
 
 # What should be here − what is here = what to fetch
 
-<img :src="'/ladder-rung3.svg'" class="corner-ladder" alt="you are here: rung 3" />
+<img :src="'./ladder-rung3.svg'" class="corner-ladder" alt="you are here: rung 3" />
 
 ```python
 def find_gaps(config, collection, start, end):
@@ -469,12 +469,12 @@ layout: default
 
 # Feeding the gaps back into the fan-out
 
-<img :src="'/ladder-rung3.svg'" class="corner-ladder" alt="you are here: rung 3" />
+<img :src="'./ladder-rung3.svg'" class="corner-ladder" alt="you are here: rung 3" />
 
 <div class="grid gap-10 items-center mt-6" style="grid-template-columns: 3fr 2fr">
 
 <div flex justify-center>
-  <img :src="'/flow-rung3.svg'" class="max-h-90 w-auto object-contain" alt="find_gaps subtracts the logbook's present days from the expected days and feeds only the gaps back into the fan-out" />
+  <img :src="'./flow-rung3.svg'" class="max-h-90 w-auto object-contain" alt="find_gaps subtracts the logbook's present days from the expected days and feeds only the gaps back into the fan-out" />
 </div>
 
 <div class="text-xl">
@@ -501,10 +501,10 @@ class: text-center
 
 # Only the gaps
 
-<img :src="'/ladder-rung3.svg'" class="corner-ladder" alt="you are here: rung 3" />
+<img :src="'./ladder-rung3.svg'" class="corner-ladder" alt="you are here: rung 3" />
 
 <div flex justify-center my-2>
-  <img :src="'/clips/rung3-gapclose-still.png'" class="max-h-85 w-auto object-contain rounded shadow" alt="The logbook names the missing days (2026-03-04, -05, -10) and the pipeline fills only those, nothing else" />
+  <img :src="'./clips/rung3-gapclose-still.png'" class="max-h-85 w-auto object-contain rounded shadow" alt="The logbook names the missing days (2026-03-04, -05, -10) and the pipeline fills only those, nothing else" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
@@ -549,7 +549,7 @@ dim: true
 # Rung 4
 ## Making the healing _visible_
 
-<img :src="'/ladder-rung4.svg'" class="mini-ladder" alt="you are here: rung 4 of the maturity ladder" />
+<img :src="'./ladder-rung4.svg'" class="mini-ladder" alt="you are here: rung 4 of the maturity ladder" />
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
@@ -566,7 +566,7 @@ class: text-center
 # The gap heatmap
 
 <div flex justify-center my-2>
-  <img :src="'/heatmap.png'" class="h-90 w-auto object-contain" alt="The gap heatmap: one cell per day per collection; filled = landed, slashed = gap" />
+  <img :src="'./heatmap.png'" class="h-90 w-auto object-contain" alt="The gap heatmap: one cell per day per collection; filled = landed, slashed = gap" />
 </div>
 
 One cell per day, per collection: filled = landed, slashed = gap. The fill and the slash carry the meaning, so it reads even without colour.
@@ -588,10 +588,10 @@ class: text-center
 
 # Built from history Argo already keeps
 
-<img :src="'/ladder-rung4.svg'" class="corner-ladder" alt="you are here: rung 4" />
+<img :src="'./ladder-rung4.svg'" class="corner-ladder" alt="you are here: rung 4" />
 
 <div flex justify-center my-2>
-  <img :src="'/clips/rung4-report-still.png'" class="max-h-85 w-auto object-contain rounded shadow" alt="The daily report: a colour-blind-safe gap grid plus a retry summary, built from Argo's own history" />
+  <img :src="'./clips/rung4-report-still.png'" class="max-h-85 w-auto object-contain rounded shadow" alt="The daily report: a colour-blind-safe gap grid plus a retry summary, built from Argo's own history" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
@@ -636,7 +636,7 @@ class: text-center
 # Which rung are you on?
 
 <div flex justify-center my-2>
-  <img :src="'/ladder.svg'" class="h-100 w-auto object-contain" alt="The maturity ladder again: which rung are you on?" />
+  <img :src="'./ladder.svg'" class="h-100 w-auto object-contain" alt="The maturity ladder again: which rung are you on?" />
 </div>
 
 The next rung is usually about an **afternoon** away. For most people it isn't a rewrite, and it doesn't mean learning Kubernetes.
@@ -669,7 +669,7 @@ _This gets data **ready for** analysis; the science (cloud-mask, indices) starts
 </div>
 
 <div flex justify-center>
-  <img :src="'/sentinel2-still.png'" class="w-full object-contain rounded shadow-lg" alt="A real Sentinel-2 STAC record open in stac-browser: the granule's footprint drawn on the map" />
+  <img :src="'./sentinel2-still.png'" class="w-full object-contain rounded shadow-lg" alt="A real Sentinel-2 STAC record open in stac-browser: the granule's footprint drawn on the map" />
 </div>
 
 </div>
@@ -716,7 +716,7 @@ class: text-center
 # Clone & run tonight
 
 <div flex justify-center my-3>
-  <img :src="'/repo-qr.png'" class="h-60" alt="QR code linking to the talk's GitHub repository" />
+  <img :src="'./repo-qr.png'" class="h-60" alt="QR code linking to the talk's GitHub repository" />
 </div>
 
 **github.com/lhoupert/argo-stac-eo-pipeline**
@@ -740,13 +740,13 @@ _one rung at a time_
 **github.com/lhoupert/argo-stac-eo-pipeline**
 
 <div mt-6>
-  <img :src="'/repo-qr.png'" class="h-44" alt="QR code linking to the talk's GitHub repository" />
+  <img :src="'./repo-qr.png'" class="h-44" alt="QR code linking to the talk's GitHub repository" />
 </div>
 
 ::right::
 
 <div h-full flex items-center justify-center pr-2>
-  <img :src="'/clips/recap.gif'" class="max-h-90 w-auto object-contain" alt="Recap animation: the five-rung ladder highlighting rung 0 up through rung 4 in turn" />
+  <img :src="'./clips/recap.gif'" class="max-h-90 w-auto object-contain" alt="Recap animation: the five-rung ladder highlighting rung 0 up through rung 4 in turn" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
