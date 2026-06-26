@@ -64,7 +64,7 @@ a live `argo-stac-eo-pipeline` cluster; the recorded results are committed here.
 ## Licence
 
 - **Code, scripts, and configuration** — [MIT](./LICENSE).
-- **Presentation content** (slides, spoken script, generated diagrams) —
+- **Presentation content** (slides, generated diagrams) —
   [CC BY 4.0](./LICENSE-content.md).
 - **Theme, imagery, and fonts** keep their own terms — see *Credits* below.
 
