@@ -289,7 +289,7 @@ and understands what happened, without touching your machine.
 -->
 
 ---
-layout: default
+layout: two-cols
 ---
 
 <div class="rung-kicker rung1">Rung 1 · Retries + logbook</div>
@@ -298,20 +298,19 @@ layout: default
 
 <img :src="'./ladder-rung1.svg'" class="corner-ladder" alt="you are here: rung 1" />
 
-<div class="grid gap-10 items-center mt-6" style="grid-template-columns: 2fr 3fr">
+<div class="text-xl mt-6">
 
-<div class="text-xl">
-
-A queryable catalog of everything that landed: the collections and their temporal extents.
+A queryable catalog of everything that landed: browse collections, inspect items, and read their metadata.
 
 _(Hold that thought.)_ In a few rungs this logbook wakes up and starts deciding what to fetch.
 
 </div>
 
-<div flex justify-center>
-  <img :src="'./stac-logbook-tight.png'" class="w-full object-contain rounded shadow-lg" alt="stac-browser showing the ingested collections and their temporal extents; the catalog as a queryable logbook" />
-</div>
+::right::
 
+<div class="flex flex-col gap-3 h-full justify-center pr-2">
+  <img :src="'./stac-collection-view.png'" class="w-full max-h-58 object-cover object-top rounded shadow-lg" alt="stac-fastapi browser showing the MOI AV (synthetic) collection with its spatial extent on a map and a thumbnail item" />
+  <img :src="'./stac-item-detail.png'" class="w-full max-h-58 object-cover object-top rounded shadow-lg" alt="stac-fastapi browser showing the MOI-AV_20260314 item detail: map, assets, and metadata including GSD, mission, platform, and instruments" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
@@ -349,16 +348,15 @@ layout: default
 
 <img :src="'./ladder-rung2.svg'" class="corner-ladder" alt="you are here: rung 2" />
 
-<div class="grid gap-10 items-center mt-6" style="grid-template-columns: 3fr 2fr">
+<div class="grid gap-8 items-start mt-4" style="grid-template-columns: 1fr 1fr">
 
-<div flex justify-center>
-  <img :src="'./flow-rung2.svg'" class="max-h-90 w-auto object-contain" alt="withItems fans the same step across thirty days, capped at ten in flight by the parallelism limit" />
+<div class="flex flex-col items-center gap-3">
+  <img :src="'./flow-rung2.svg'" class="max-h-80 w-auto object-contain" alt="withItems fans the same step across thirty days, capped at ten in flight by the parallelism limit" />
+  <p class="text-xl text-center">Instead of one step doing 30 days in a row, ask for 30 steps at once. In Argo that's <strong><code>withItems</code></strong>, one line.</p>
 </div>
 
-<div class="text-xl">
-
-Instead of one step doing 30 days in a row, ask for 30 steps at once. In Argo that's **`withItems`**, one line.
-
+<div flex justify-center>
+  <img :src="'./clips/rung2-fanout-still.png'" class="max-h-90 w-auto object-contain rounded shadow" alt="Argo UI showing a month of backfill fanned out in parallel" />
 </div>
 
 </div>
@@ -377,12 +375,13 @@ class: text-center
 
 <div class="rung-kicker rung2">Rung 2 · Fan-out</div>
 
-# A month of backfill, politely
+# A month of backfill
 
 <img :src="'./ladder-rung2.svg'" class="corner-ladder" alt="you are here: rung 2" />
 
-<div flex justify-center my-2>
-  <img :src="'./clips/rung2-fanout-still.png'" class="max-h-85 w-auto object-contain rounded shadow" alt="A month of backfill fanned out in parallel, never more than ten ingests running at once" />
+<div class="grid gap-6 mt-4" style="grid-template-columns: 1fr 1fr">
+  <img :src="'./argo-rung2-fanout.png'" class="w-full max-h-72 object-cover object-top rounded shadow" alt="Argo workflow details showing the rung2-backfill DAG: ensure-collection then parallel backfill steps" />
+  <img :src="'./stac-rung2-items.png'" class="w-full max-h-72 object-cover object-top rounded shadow" alt="STAC browser showing the MOI AV synthetic collection with a grid of 30 ingested items" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
