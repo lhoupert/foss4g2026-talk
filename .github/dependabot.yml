@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # Keep the hash-pinned GitHub Actions current (Dependabot bumps the SHA and the
+  # trailing `# vX` comment together) so pinning doesn't mean running stale, unpatched actions.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    # Wait a week before proposing a new release so a freshly-published
+    # (possibly compromised) action version isn't pulled in immediately.
+    cooldown:
+      default-days: 7

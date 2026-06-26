@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1310 456" role="img" aria-label="EO ingestion maturity ladder, rungs 0 to 4">
+  <title>Maturity ladder (rungs 0–4)</title>
+  <line x1="270" y1="384" x2="290" y2="306" stroke="#CFCFC6" stroke-width="10" stroke-linecap="round"/>
+  <line x1="520" y1="306" x2="540" y2="228" stroke="#CFCFC6" stroke-width="10" stroke-linecap="round"/>
+  <line x1="770" y1="228" x2="790" y2="150" stroke="#CFCFC6" stroke-width="10" stroke-linecap="round"/>
+  <line x1="1020" y1="150" x2="1040" y2="72" stroke="#CFCFC6" stroke-width="10" stroke-linecap="round"/>
+  <polyline points="1139,30 1155,10 1171,30" fill="none" stroke="#999990" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g><rect x="40" y="352" width="230" height="64" rx="10" fill="#565b65" stroke="#443f3f" stroke-width="5"/><text x="56" y="393" font-family="Roboto, system-ui, sans-serif" font-size="26" font-weight="700" fill="#ffffff">0</text><text x="88" y="393" font-family="Roboto, system-ui, sans-serif" font-size="20" fill="#ffffff">cron</text>
+  <polygon points="146,336 164,336 155,349" fill="#cf3f02"/><text x="155" y="330" text-anchor="middle" font-family="Roboto, system-ui, sans-serif" font-size="17" font-weight="700" fill="#cf3f02">you are here</text>
+  </g>
+  <g><rect x="290" y="274" width="230" height="64" rx="10" fill="#e6e6e0" stroke="#c2c2b9" stroke-width="2"/><text x="306" y="315" font-family="Roboto, system-ui, sans-serif" font-size="26" font-weight="700" fill="#9a9a90">1</text><text x="338" y="315" font-family="Roboto, system-ui, sans-serif" font-size="20" fill="#9a9a90">retries + logbook</text>
+  </g>
+  <g><rect x="540" y="196" width="230" height="64" rx="10" fill="#e6e6e0" stroke="#c2c2b9" stroke-width="2"/><text x="556" y="237" font-family="Roboto, system-ui, sans-serif" font-size="26" font-weight="700" fill="#9a9a90">2</text><text x="588" y="237" font-family="Roboto, system-ui, sans-serif" font-size="20" fill="#9a9a90">fan-out</text>
+  </g>
+  <g><rect x="790" y="118" width="230" height="64" rx="10" fill="#e6e6e0" stroke="#c2c2b9" stroke-width="2"/><text x="806" y="159" font-family="Roboto, system-ui, sans-serif" font-size="26" font-weight="700" fill="#9a9a90">3</text><text x="838" y="159" font-family="Roboto, system-ui, sans-serif" font-size="20" fill="#9a9a90">self-repair</text>
+  </g>
+  <g><rect x="1040" y="40" width="230" height="64" rx="10" fill="#e6e6e0" stroke="#c2c2b9" stroke-width="2"/><text x="1056" y="81" font-family="Roboto, system-ui, sans-serif" font-size="26" font-weight="700" fill="#9a9a90">4</text><text x="1088" y="81" font-family="Roboto, system-ui, sans-serif" font-size="20" fill="#9a9a90">observability</text>
+  </g>
+</svg>

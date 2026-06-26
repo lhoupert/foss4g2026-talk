@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.slidev/
+*.log
+# Python asset-generator toolchain (uv); uv.lock is committed for reproducibility
+.venv/
+__pycache__/
+.pytest_cache/
+# exported deck (build artifact — regenerate with `npm run export`); commit explicitly if a versioned fallback is wanted
+*.pdf
