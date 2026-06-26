@@ -18,7 +18,7 @@ image: /images/theme/landsat9-kangerdlugssuaq-greenland.jpg
 # From Cron Job to Self-Healing Pipeline
 
 ::subtitle::
-A maturity ladder for Earth-observation ingestion, one I climbed twice
+An example of a maturity ladder for Earth-observation ingestion
 
 <DecorativeRectangle
   width="46%"
@@ -52,11 +52,10 @@ image: /images/theme/lena-delta.jpg
 <!--
 - Your own story: physical oceanographer → years building research datasets by hand (cron + MATLAB).
   They worked, but only because you were the monitoring, the alerting and the recovery, all at once.
-- The pivot: moved into cloud engineering, curious about the systems behind the data. Credibility woven
-  in. New to Argo specifically: "What is Argo Workflows?" to a working pipeline in five days; only the
-  tool was new (you'd built pipelines for years).
-- Land the thesis: the distance between a script on your laptop and a pipeline you can trust, and how
-  you close it, one step at a time.
+- The pivot: moved into cloud engineering, curious about the systems behind the data. New to Argo
+  specifically: "What is Argo Workflows?" to a working pipeline in five days; only the tool was new.
+- The distance between a script on your laptop and a pipeline you can trust, and how you close it,
+  one step at a time.
 -->
 
 ---
@@ -75,11 +74,11 @@ Five rungs, from a laptop cron job at the bottom to a pipeline that fills its ow
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- THE slide, the one they photograph. Stop talking for a second; let it land.
+- Stop talking for a second; let it land.
 - Five rungs: laptop cron at the bottom, a pipeline that fills its own gaps at the top.
 - It's diagnostic: you can place your own work on it, and the question is just which rung you're on
   and what the next one is.
-- The heart, first telling: the unit of work never changes; only the ladder around it grows.
+- The unit of work never changes; only the ladder around it grows.
 -->
 
 ---
@@ -231,8 +230,7 @@ spec:
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- The reassurance beat (panel review: this is the slide a rung-0 listener screenshots). Point at the
-  schedule line ("that's your crontab") and the image line ("that's the script you already have").
+- Point at the schedule line ("that's your crontab") and the image line ("that's the script you already have").
 - There's no Kubernetes on screen, just a schedule and an image, and that's the whole on-ramp.
 -->
 
@@ -317,8 +315,8 @@ _(Hold that thought.)_ In a few rungs this logbook wakes up and starts deciding 
 
 <!--
 - Today it just feels like a record of what landed. In a few rungs this logbook wakes up.
-- Zero extra lines for all three: retries, the UI, the logbook. The ingest code in the container is
-  byte-for-byte the cron one, enforced by the repo's tests.
+- Very few extra lines for all three: retries, the UI, the logbook. The ingest code in the container
+  is the same cron one, enforced by the repo's tests.
 -->
 
 ---
@@ -426,8 +424,7 @@ dim: true
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
-- The heart of the talk. Slow right down here and let it be still. It stops being a record of what
-  happened and starts telling you what to do next.
+- Slow down here. It stops being a record of what happened and starts telling you what to do next.
 -->
 
 ---
@@ -446,7 +443,7 @@ def find_gaps(config, collection, start, end):
     return [d for d in window(start, end) if d not in present] # what it's MISSING
 ```
 
-_(Trimmed; the full, adversarial-tested version is in the repo.)_
+_(Trimmed for clarity; the full, edge-case-hardened version is in the repo.)_
 
 **Real missions:** the code models acquisition cadence rather than calendar days, since some gaps are genuinely _legitimate_.
 
@@ -509,8 +506,7 @@ class: text-center
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- The clip: the catalog has holes, find_gaps finds them, the pipeline fills precisely those days and
-  nothing else. Let it land; this is the quiet "oh".
+- The catalog has holes, find_gaps finds them, the pipeline fills precisely those days and nothing else.
 -->
 
 ---
@@ -528,7 +524,7 @@ A day that used to slip past unnoticed now **gets caught and refilled on the nex
 
 _Idempotent: run it again with nothing missing, and nothing happens. Safe to run on a schedule forever._
 
-**The unit of work never changed. Now it remembers what it has already done.**
+**Same script. The pipeline around it now tracks what landed.**
 
 <LogoHorNegMono position="bottom-right" height="30px" />
 
@@ -552,7 +548,7 @@ dim: true
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
-- Brisk now; the hard conceptual work is behind us. "And it keeps climbing."
+- Keep it brief; the main ideas are already in place.
 -->
 
 ---
@@ -603,6 +599,26 @@ class: text-center
 -->
 
 ---
+layout: image-left
+image: /images/theme/sentinel2a-southern-tibetan-plateau.jpg
+---
+
+# That's the whole ladder
+
+The same ingest step at every rung. What grew was how much the pipeline heals on its own.
+
+There are two distinct levels of that healing, and it is worth separating them out.
+
+<LogoHorPos position="top-left" height="30px" />
+
+<!--
+- Before naming the two levels: invite the diagnostic. "This ladder is not aspirational — you can
+  place your own work on it. When I place my past work on it, most of it sat at rung 0 or 1. And the
+  next rung is usually an afternoon away. So: which rung are you on?"
+- Then pivot: "Two distinct kinds of healing — let me name them separately, because they are easy to blur."
+-->
+
+---
 layout: default
 ---
 
@@ -625,86 +641,72 @@ layout: default
 - Item-level the machine fixes alone. System-level the machine finds and a human decides.
 - Why the split matters: the machine absorbing blips is what *earns* your attention for genuine problems.
   A pipeline that fired at every hiccup would just get muted, no better than silent cron.
+- §5 outro (spoken before advancing to EOPF slide): "The unit of work never changes; only the ladder
+  around it grows. I climbed this ladder twice — once at sea, with cron and MATLAB, and once again
+  this year. You only have to climb it once."
 -->
 
 ---
-layout: center
-class: text-center
+layout: two-cols
 ---
 
-# Which rung are you on?
+# The same patterns, at production scale
 
-<div flex justify-center my-2>
-  <img :src="'./ladder.svg'" class="h-100 w-auto object-contain" alt="The maturity ladder again: which rung are you on?" />
+<div class="text-xl mt-6">
+
+The exact same patterns — Argo orchestrating an ingest function, a STAC catalog as the logbook — deployed at Copernicus scale.
+
+<div flex items-center gap-3 my-2>
+  <img :src="'./eopf-explorer-logo.png'" class="h-10" alt="EOPF Explorer logo" />
+  <strong><a href="https://explorer.eopf.copernicus.eu/">explorer.eopf.copernicus.eu</a></strong>
 </div>
 
-The next rung is usually about an **afternoon** away. For most people it isn't a rewrite, and it doesn't mean learning Kubernetes.
-
-<LogoHorPos position="top-left" height="30px" />
-
-<!--
-- §6: frame it as something you noticed, not a rule you're handing down. The ladder is diagnostic, and
-  you can place your own work on it. When you place your own past work on it, most of it sat at rung 0
-  or 1; that's where you started.
-- The encouraging part: the next rung is usually about an afternoon away; for most people it isn't a
-  rewrite or learning K8s.
-- Through-line, third telling: the unit of work never changes; only the ladder around it grows.
--->
-
----
-layout: default
----
-
-# The same pipeline, on real **Sentinel-2**
-
-<div class="grid gap-10 items-center mt-6" style="grid-template-columns: 2fr 3fr">
-
-<div class="text-xl">
-
-Same frozen ingest, pointed at Earth Search. Production is a profile: **`make up PROFILE=prod`**.
-
-_This gets data **ready for** analysis; the science (cloud-mask, indices) starts where ingestion leaves off._
+_Ingestion feeds a catalog; the visualisation and analysis layers come next — and the same orchestration moves wrap those steps too._
 
 </div>
 
-<div flex justify-center>
-  <img :src="'./sentinel2-still.png'" class="w-full object-contain rounded shadow-lg" alt="A real Sentinel-2 STAC record open in stac-browser: the granule's footprint drawn on the map" />
-</div>
+::right::
 
+<div h-full flex items-center justify-center pr-2>
+  <img :src="'./eopf-sentinel-explorer.png'" class="w-full object-contain rounded shadow-lg" alt="EOPF Sentinel Explorer STAC API: Sentinel-2 Level-2A collection page showing items grid" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- The credibility moment: a real catalog record, the granule's true footprint on the map (it's a STAC
-  record, not a rendered scene; say it that way). Same ladder, real Copernicus data ("contains modified
-  Copernicus Sentinel data").
-- The honest scope line (panel review / SPEC §ingestion-vs-ARD): pre-empts "you stopped before the hard
-  part." Ingestion ends, ARD begins, and the same orchestration moves wrap those steps too.
+- The credibility beat: the demos ran in a synthetic world — this is what the same patterns look like at
+  Copernicus scale. A real deployed catalog for Sentinel-2 data. Same ladder; much larger world.
+- Honest scope: ingestion gets data ready for the algorithm; ARD / cloud-mask / indices start where it
+  ends. The same orchestration moves wrap those steps too.
 -->
 
 ---
 layout: default
 ---
 
-# Why Argo, and the neighbours
+# Go deeper this week
 
-The ladder is **orchestrator-agnostic**: Airflow or Prefect could climb it too. Argo buys K8s-native
-**container-per-step**, first-class **fan-out**, no separate scheduler DB.
+<div class="grid gap-8 mt-8" style="grid-template-columns: 1fr 1fr">
 
-**Neighbours:** cirrus-geo · stactools / stac-task · VEDA · openEO _(processing side)_
+<div class="p-6 rounded-lg" style="background: #1e293b; color: white;">
+  <p class="text-sm font-600 uppercase tracking-wide mb-1" style="color: #56B4E9;">Thursday 2 July · 9:00 · Room A13</p>
+  <h3 class="text-xl font-700 mt-0 mb-3">eoAPI + STAC for Earth Data at Scale</h3>
+  <p class="text-base m-0">Catalog, discover, visualize, and analyze Earth observation data efficiently. Hands-on with <strong>Felix Delattre</strong> (Development Seed).</p>
+</div>
 
-<div mt-10 p-5 rounded bg-primary text-center>
-  <p text-2xl font-500 m-0 text-white>None of these pieces are new. The contribution is <strong>a ladder you can climb</strong>.</p>
+<div class="p-6 rounded-lg" style="background: #1e293b; color: white;">
+  <p class="text-sm font-600 uppercase tracking-wide mb-1" style="color: #E69F00;">Friday 3 July · 9:00 · Room 059</p>
+  <h3 class="text-xl font-700 mt-0 mb-3">EOPF Zarr Explorer: GeoZarr on the Web</h3>
+  <p class="text-base m-0">GeoZarr, TiTiler, eodash, Jupyter EOxElements — cloud-native EO visualization, hands-on with <strong>Ahmed Behairi</strong> (EOX).</p>
+</div>
+
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Say the THESIS line out loud (~12s, panel review): none of these pieces are new; the contribution is
-  a *climbable path* a solo researcher can walk. It's the strongest skeptic-disarmer in the deck.
-- The orchestrator/neighbours DETAIL stays silent by default (cut3); it's Q&A insurance for "why not
-  Airflow?"; narrate the detail only if ahead of time.
+- The community is here, this week. Two workshops dive exactly into this ecosystem.
+- Say the room and day clearly — people will want to add it to their schedule.
 -->
 
 ---
@@ -727,11 +729,33 @@ _one rung at a time_
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Leave this up for Q&A (~3.5 min). Repo open in a backup tab; never depend on a live cluster.
-- Pause before answering; repeat the question back so the room hears it (and you get a beat).
-- Production-scale Argo questions: you positioned as a recent climber: "I've run this at laptop scale;
-  the prod profile is where I'd start; no war stories at volume." Don't bluff depth.
-- Other likely ones: ingestion vs ARD boundary; how the synthetic world maps to real missions;
-  cost/ops of running Argo.
-- "Have a look at where your own work sits, and maybe climb one rung."
+- Leave this up for Q&A. Repo open in a backup tab; never depend on a live cluster.
+- Pause before answering; repeat the question so the room hears it.
+- On production-scale Argo: be honest — "I've run this at laptop scale; I'd start from the prod
+  profile but don't have war stories at volume."
+- Likely questions: ingestion vs ARD boundary; how the synthetic world maps to real missions;
+  cost/ops of running Argo; why not Airflow? (→ advance to the next slide if that comes up).
+-->
+
+---
+layout: default
+---
+
+# Why Argo, and the neighbours
+
+The ladder is **orchestrator-agnostic**: Airflow or Prefect could climb it too. Argo buys K8s-native
+**container-per-step**, first-class **fan-out**, no separate scheduler DB.
+
+**Neighbours:** cirrus-geo · stactools / stac-task · VEDA · openEO _(processing side)_
+
+<LogoHorPos position="top-left" height="30px" />
+
+<!--
+  [BACKUP — advance here only if "why not Airflow / Prefect?" comes up in Q&A]
+- The ladder is orchestrator-agnostic; Argo wins on three concrete points: container-per-step
+  isolation, first-class fan-out (withItems), no separate scheduler database to operate.
+- Neighbours worth naming: cirrus-geo for the AWS-native path; stactools / stac-task for item
+  builders; VEDA for the NASA deployment; openEO on the processing side.
+- Close with the through-line: none of these pieces are new — the contribution is a path a solo
+  researcher can walk.
 -->
