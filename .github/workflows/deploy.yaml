@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-slidev-
 
       - name: Build
-        run: npm run build -- --base "./"
+        run: npm run build -- --base "/foss4g2026-talk/"
 
       - name: Setup Pages
         uses: actions/configure-pages@1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d # v4
