@@ -8,7 +8,7 @@
     "export": "slidev export --output foss4g-2026-talk.pdf"
   },
   "dependencies": {
-    "@slidev/cli": "^52.6.0",
+    "@slidev/cli": "52.15.2",
     "@slidev/theme-default": "latest",
     "@slidev/theme-seriph": "latest",
     "slidev-addon-qrcode": "^1.0.2",
