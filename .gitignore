@@ -8,3 +8,5 @@ __pycache__/
 .pytest_cache/
 # exported deck (build artifact — regenerate with `npm run export`); commit explicitly if a versioned fallback is wanted
 *.pdf
+# raw intermediate recordings from playwright (webm); not committed — regenerate with the playwright scripts
+public/clips/_raw/

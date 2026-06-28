@@ -5,7 +5,8 @@
   "scripts": {
     "build": "slidev build",
     "dev": "slidev --open",
-    "export": "slidev export --output foss4g-2026-talk.pdf"
+    "export": "slidev export --output foss4g-2026-talk.pdf",
+    "export:pptx": "slidev export --format pptx --output foss4g-2026-talk.pptx"
   },
   "dependencies": {
     "@slidev/cli": "52.15.2",

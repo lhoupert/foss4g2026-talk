@@ -2,7 +2,7 @@
 theme: ./theme
 title: From Cron Job to Self-Healing Pipeline
 info: |
-  FOSS4G Europe 2026. A maturity ladder for Earth-observation ingestion.
+  FOSS4G Europe 2026. My journey up the maturity ladder for Earth-observation ingestion.
   Talk by Loïc Houpert (Development Seed).
   Companion repo: github.com/lhoupert/argo-stac-eo-pipeline
 highlighter: shiki
@@ -18,7 +18,7 @@ image: /images/theme/landsat9-kangerdlugssuaq-greenland.jpg
 # From Cron Job to Self-Healing Pipeline
 
 ::subtitle::
-An example of a maturity ladder for Earth-observation ingestion
+My journey up the maturity ladder for Earth-observation ingestion
 
 <DecorativeRectangle
   width="46%"
@@ -35,9 +35,7 @@ An example of a maturity ladder for Earth-observation ingestion
 <LogoHorPos position="top-left" height="34px" />
 
 <!--
-- The band along the bottom is the synthetic world's own art: clearly stylised, never passed off as real EO.
-- Open on your own story, plainly, not as a performance. Tell the oceanographer → cloud-engineer arc;
-  the fragility comes through honestly, no shared-pain device.
+Breathe
 -->
 
 ---
@@ -50,12 +48,12 @@ image: /images/theme/lena-delta.jpg
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Your own story: physical oceanographer → years building research datasets by hand (cron + MATLAB).
-  They worked, but only because you were the monitoring, the alerting and the recovery, all at once.
-- The pivot: moved into cloud engineering, curious about the systems behind the data. New to Argo
-  specifically: "What is Argo Workflows?" to a working pipeline in five days; only the tool was new.
-- The distance between a script on your laptop and a pipeline you can trust, and how you close it,
-  one step at a time.
+"My path into Earth observation has been a bit unusual. I started as a physical oceanographer, and I spent years turning measurements collected at sea into research datasets."
+- Built them the fragile way: scripts on a schedule, cron + MATLAB, held together by hand. Mostly worked because I was the one watching them
+- Pivot: moved into cloud engineering, curious about the systems behind the data.
+- Surprise by how approachable the modern tooling is. Earlier this year I went from "What is Argo Workflows?" → working pipeline in five days. 
+
+- Main goal of this talk: close the distance between a script on your laptop and a pipeline you can trust.
 -->
 
 ---
@@ -69,16 +67,15 @@ class: text-center
   <img :src="'./ladder.svg'" class="h-100 w-auto object-contain" alt="The maturity ladder, rungs 0 to 4" />
 </div>
 
-Five rungs, from a laptop cron job at the bottom to a pipeline that fills its own gaps at the top.
+Five rungs, the path I climbed, from a laptop cron job at the bottom to a pipeline that fills its own gaps at the top.
 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Stop talking for a second; let it land.
-- Five rungs: laptop cron at the bottom, a pipeline that fills its own gaps at the top.
-- It's diagnostic: you can place your own work on it, and the question is just which rung you're on
-  and what the next one is.
-- The unit of work never changes; only the ladder around it grows.
+**"The way I came to think about that distance is as a ladder. Five rungs."**
+- PAUSE photographed slide; stop talking and let it land.
+- Bottom = rung 0, script on a laptop 🤞. Top = fills its own gaps before you wake.
+- Nothing thrown away as you climb: unit of work never changes; only the ladder grows- the little function that fetches one day of data is the same at the bottom and at the top.
 -->
 
 ---
@@ -112,9 +109,12 @@ tool. Same logo family, completely different job.
   <div class="flex items-center gap-5 px-6 py-3 rounded-xl" style="background:#f4f1ee; border:1px solid #e4ddd5">
     <img :src="'./repo-qr.png'" class="h-24 w-auto" alt="QR code linking to the companion repository" />
     <div class="text-left">
-      <p class="text-xs font-700 uppercase tracking-wide m-0" style="color:var(--slidev-theme-primary)">Follow along — the companion repo</p>
-      <p class="text-xl font-700 m-0 mt-1">github.com/lhoupert/argo-stac-eo-pipeline</p>
-      <p class="text-sm m-0 mt-1" style="color:#565b65">Every rung runs on your laptop with Docker — <code>make up && make demo STAGE=01</code></p>
+      <p class="text-l font-700 uppercase tracking-wide m-0" style="color:var(--slidev-theme-primary)">Follow along — the companion repo</p>
+     <div flex items-center gap-2>
+      <GitHubIcon size="18" />  <p class="text-normal font-700 m-0 mt-1"><a href="https://github.com/lhoupert/argo-stac-eo-pipeline">github.com/lhoupert/argo-stac-eo-pipeline</a></p>
+     </div>
+      <p class="text-normal m-0 mt-1" style="color:#565b65">Every rung runs on your laptop with Docker:</p>
+<p class="text-normal m-0 mt-1" style="color:#565b65"> <code>make up && make demo STAGE=01</code></p>
     </div>
   </div>
 </div>
@@ -126,13 +126,12 @@ tool. Same logo family, completely different job.
 </style>
 
 <!--
-- Promise 1, permission to relax: "if you've been told doing-it-properly means learn K8s first, that
-  wall is what this ladder gets you over, one rung at a time."
-- Promise 2, saves a Q&A tangent: "when I say Argo today, I mean Workflows."
-- The honesty beat (and the best evidence for the talk): "I'm not an Argo veteran; I climbed this ladder
-  myself, this year. The next rung being an afternoon away is a recent memory, not a pitch."
-- The repo banner is a soft early plant: "everything I show is one repo you can clone — QR's here, and
-  it's on the closing slide too if you want to grab it then." Don't dwell; it reassures the doers.
+**"Before we start, two quick promises."**
+
+- Promise 1: first rung is one line in a crontab; to run the repo you need Docker, that's it. "If you've been told doing-it-properly means learn K8s first, that wall is what this talk will try help you get over."
+- Promise 2: Argo = Argo Workflows. Not Argo CD. Same logo family, different job.
+
+- Companion repo: "everything I show is one repo, QR's here, also on the closing slide."
 -->
 
 ---
@@ -148,7 +147,7 @@ dim: true
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
-- Keep it warm: this is us. "I've shipped this, more than once."
+**"Rung zero is the honest baseline: one line in a laptop crontab."**
 -->
 
 ---
@@ -171,12 +170,9 @@ layout: default
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Payoff of the hook (your own memory, the paper's numbers): during the PhD you built a consolidated
-  database for your first paper — 13 separate databases, ~140k ocean profiles (from ~190k), 44 years —
-  all stitched together by hand with cron + MATLAB. It worked only because you were watching it.
-- It works most of the time, and then quietly stops. Quiet errors drop data unnoticed; the laptop slept,
-  the wifi dropped, the log scrolled past. You're the only one watching, and you were asleep.
-- Keep the crontab line in mind: we never throw it away. The next rung wraps this exact script.
+- Example of simple cron tab that run a simple ingestion script every morning at 3am and append the output to a log file. This example is very similar to the first ingestion/processing script I ran.
+- PhD: 13 separate databases, ~190k ocean profiles, 44 years — stitched by hand, cron + MATLAB. Scientific analysis of these data led to my 1st scientifc paper. Building this -> looot of time and effort and it worked mostly because I was constantly watching over it
+- It is the problem: it works right up until it doesn't: quiet errors drop data, network connection dropped, log scrolled past. I was the only monitoring, the only alerting, and the only recovery.
 -->
 
 ---
@@ -192,7 +188,7 @@ dim: true
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
-- Same unit of work, unchanged. What changes is everything around it.
+- So that was rung 0, now we're going up one step, without rewriting anything from our ingestion script.
 -->
 
 ---
@@ -221,12 +217,10 @@ The ingest function is **unchanged**; Argo wraps it with **retries**, a **web UI
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Heads-up on what's on screen from here: a tiny synthetic world (made-up missions, laptop-sized), so
-  every clip is reproducible on your machine. Real Sentinel-2 at the end, promise.
-- Full honesty before anyone asks: Argo runs ON a Kubernetes cluster; the repo brings one up inside
-  Docker with one command. You use it, you don't operate it. The promise stands.
-- The 0→1 delta, plainly: it isn't "I learned Kubernetes"; it's "I moved one script to a thing that
-  retries it and remembers what it did." That's about an afternoon of work, and it's the on-ramp.
+**"We take that same script — the same unit of work, unchanged — and instead of handing it to cron, we hand it to Argo Workflows."**
+
+- Three things appear without touching the processing script: retries, a web UI, a STAC logbook.
+- Under the hood Argo runs on K8s underneath. The companion repo brings a simple k8s cluster up inside Docker with one command. But you don't operate it
 -->
 
 ---
@@ -251,9 +245,10 @@ _ingest(0) ✗ → ingest(1) ✓ · recovered, unattended_
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Let the clip's first loop land in silence; you don't have to fill the gap.
-- ingest(0) ✖ → ingest(1) ✔: a blip that used to eat a day silently is now a recovered day, and you
-  slept through the recovery. "It changed how I felt about going to bed."
+**"A step fails or the network let you down, and instead of losing hours until you realise, Argo runs it again."**
+
+- Here you can see the graph of steps in Argo based on yaml file created in the demo repo. _--Let a bit of silence for the clip to run.--_ You can see that the ingest step has two events: the first attempt fails, marked with a cross, and the second succeeds.  
+- ingest(0) ✗ → ingest(1) ✓: a blip that used to silently eat a day, now recovered while you slept.
 -->
 
 ---
@@ -278,9 +273,12 @@ and understands what happened, without touching your machine.
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- The team angle: with a laptop crontab only its author can debug it. Now a colleague can open the UI,
-  see the failed step, read the logs, and understand what happened, without touching your machine.
-- Point at the red step + the log panel so anyone who's never opened it knows what "a place to look" means.
+**"You are no longer the only one watching."**
+
+- When retries can't fix it, there's finally a place to look: full history of every run, every step, every log line.
+- Not a log file on a sleeping laptop or remote server.
+- Team angle: crontab = only its author can debug it. Now a colleague opens the UI, reads the logs, understands — without touching your machine.
+- Point at the red step + the log panel.
 -->
 
 ---
@@ -311,9 +309,10 @@ _(Hold that thought.)_ In a few rungs this logbook wakes up and starts deciding 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Today it just feels like a record of what landed. In a few rungs this logbook wakes up.
-- Very few extra lines for all three: retries, the UI, the logbook. The ingest code in the container
-  is the same cron one, enforced by the repo's tests.
+**"Every item we ingest is written into a catalog — a STAC catalog — you can browse."**
+
+- One quick note on what is on screen. The companion repo I mentioned run synthetic  missions,laptop-sized data. 
+- For now this catalogue feels like a record of what landed, a logbook. But in a few rungs from now, that logbook wakes up.
 -->
 
 ---
@@ -322,7 +321,7 @@ layout: default
 
 <div class="rung-kicker rung1">Rung 1 · Retries + logbook</div>
 
-# Two small YAML files — not a rewrite
+# Two small YAML files, not a rewrite
 
 <img :src="'./ladder-rung1.svg'" class="corner-ladder" alt="you are here: rung 1" />
 
@@ -346,10 +345,13 @@ Same image as rung 0, byte-for-byte. One file adds retries and the logbook; one 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Two files, not one: the Workflow wraps the image with retries and ensures the collection exists for
-  the logbook; the CronWorkflow just puts that workflow on the 3 a.m. schedule.
-- The code in the container is the rung-0 code, byte-for-byte; the repo's tests enforce that.
-- "I moved one script from cron to something that retries it and remembers what it did." That's it.
+**"In this first part we moved one script from cron to something that retries it and remembers what it did.'"**
+
+- In the companion repo that is two small YAML files: one wraps the image you already have as a workflow — make sure the catalog exists, then run the ingest with retries, and another short yaml puts that workflow on the same three a.m. schedule, creating a cronworfklow 
+
+- Code in the container is the rung-0 code, byte-for-byte.
+
+- Notice what we did NOT do never touched the ingest function, only what surrounds it. That's the pattern for the rest of the presentation.
 -->
 
 ---
@@ -365,8 +367,13 @@ dim: true
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
-- Backfill: someone wants a time series and there's a hole the size of a mission. Doing it one day
-  at a time can cost you a whole weekend.
+**"Everything we have done so far protects a single run with retries, accessibility, and discovery."**
+
+- But sooner or later, we need more that ingesting real-time data, we need to ingest historical data. 
+
+- Backfilling is a different problem: someone needs months or years of data. Once we have a pipeline similar to rung1 stage, it is very easy to run historical backfilling pipeline in Argo workflows.
+
+- Instead of working through the scene or days in sequence, we fan them out.
 -->
 
 ---
@@ -381,13 +388,18 @@ layout: default
 
 <div class="grid gap-8 items-start mt-4" style="grid-template-columns: 1fr 1fr">
 
+
 <div class="flex flex-col items-center gap-3">
-  <img :src="'./flow-rung2.svg'" class="max-h-80 w-auto object-contain" alt="withItems fans the same step across thirty days, capped at ten in flight by the parallelism limit" />
-  <p class="text-xl text-center">Instead of one step doing 30 days in a row, ask for 30 steps at once. In Argo that's <strong><code>withItems</code></strong>, one line.</p>
+  <img :src="'./flow-rung2.svg'" class="max-h-65 w-auto object-contain" alt="withItems fans the same step across thirty days, capped at ten in flight by the parallelism limit" />
+  <div class="text-xl text-center">
+
+Instead of one step doing 30 days in a row, ask for 30 steps at once. In Argo that's <strong><code>withItems</code></strong>, one line.
+
+  </div>
 </div>
 
 <div class="flex flex-col items-center gap-1">
-  <img :src="'./clips/rung2-fanout-still.png'" class="max-h-85 w-auto object-contain rounded shadow" alt="Argo UI showing a month of backfill fanned out in parallel" />
+    <img :src="'./clips/rung2-fanout-still.png'" class="max-h-55 w-auto object-contain rounded shadow" alt="Argo UI showing a month of backfill fanned out in parallel" />
   <p class="text-base opacity-70 m-0"><code>make demo STAGE=02</code></p>
 </div>
 
@@ -396,8 +408,12 @@ layout: default
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- "Fan-out" expanded on first use: instead of one step doing 30 days in a row, ask for 30 steps at once.
-  In Argo that's `withItems`, one line. Same unit of work; we just asked for many.
+**"For example, instead of one step working through thirty days in a row, we ask for thirty steps and run them side by side."**
+
+- `withItems`: give Argo a list, it runs the same step once per item. One-line change.
+- Same unit of work, we just asked for many at once.
+
+- If you want to watch this happen, the rung-two stage in the demo repo runs it for you: `make demo STAGE=02`. You can see in the terminal all thirty days submitted at once and Argo working through them in waves of ten
 -->
 
 ---
@@ -411,18 +427,20 @@ class: text-center
 
 <img :src="'./ladder-rung2.svg'" class="corner-ladder" alt="you are here: rung 2" />
 
-<div class="grid gap-6 mt-4" style="grid-template-columns: 1fr 1fr">
-  <img :src="'./argo-rung2-fanout.png'" class="w-full max-h-72 object-cover object-top rounded shadow" alt="Argo workflow details showing the rung2-backfill DAG: ensure-collection then parallel backfill steps" />
-  <img :src="'./stac-rung2-items.png'" class="w-full max-h-72 object-cover object-top rounded shadow" alt="STAC browser showing the MOI AV synthetic collection with a grid of 30 ingested items" />
+<div class="flex justify-center mt-4">
+  <img :src="'./clips/rung2-fanout.gif'" class="max-h-72 w-auto object-contain rounded shadow" alt="Side-by-side: left Argo UI showing 30 days fanned out in parallel (10 at a time); right STAC browser showing the MOI AV synthetic collection filling with item footprints as each day is ingested" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Let the burst of parallel pods play; the cap is visible as the queue drains.
-- The rung you felt most directly in production: a reprocessing job you'd *estimated* at more than 30h
-  (say "estimated"), split the way just described — query once, then fan out one item per worker — came
-  in under 4h. Keep this number apart from the demo's ~6× (50 s vs 311 s); don't merge the two.
+**And on this next slide the are two places where you can visualise what is happening:** 
+
+- On the left, the Argo interface showing the backfill as a single fan of parallel steps;
+- On the right, the STAC catalog, now holding a full grid of thirty freshly ingested days where a moment ago there was nothing.
+
+
+**"This is a rung that I felt most directly in production.""** I once had a reprocessing job I had estimated at more than thirty hours. I split it the way I just described: query once, then fan out with one item per worker; and it came in under four hours.
 -->
 
 ---
@@ -436,17 +454,21 @@ class: text-center
 
 # Fast must not mean rude
 
-Running the days in parallel is what makes it faster — about 6× in the demo (50 s vs 311 s). 
-The **`parallelism: 10`** cap is what keeps it responsible: sized to what the upstream service can handle, not to what our cluster could throw at it.
+Fan-out without a cap is a denial-of-service attack with good intentions 😅. 300 parallel requests is no longer backfilling it is overwhelming the upstream services you depend on . 
+
+`parallelism: 10` -> most of the time constrained by what the upstream service can handle
+
+
 
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
-- Uncapped fan-out can overwhelm the upstream even with good intentions: three hundred parallel
-  requests is more than the thing you depend on can take. The cap is just being considerate.
-- Why parallel helps at all on one laptop: ingestion is mostly *waiting* on the network and object
-  store. While one day waits for a response, another runs — that is where the time saving comes from.
-  (cut2: drop this 'why it works' aside if running long; keep the number and the cap.)
+**"But there is a caveat EO people feel instinctively: Fan-out without a cap is a denial-of-service attack with good intentions . **
+
+- Three hundred parallel requests is no longer backfilling it is overwhelming the upstream services you depend on . 
+- `parallelism: 10` can be sized to what the upstream service can handle, not our cluster.
+- By doing that you tell Argo to fan out across all thirty days but never more than ten at once, and it queues the rest.
+- If you run the rung2 stage in the companion repo you should find that the capped fan-out ran the backfill about six times faster than if you were processing the items sequentially. On my laptop, I got fifty seconds instead of five minutes.: ~6× faster;
 -->
 
 ---
@@ -462,7 +484,11 @@ dim: true
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
-- Slow down here. It stops being a record of what happened and starts telling you what to do next.
+- _SLOW DOWN_
+
+- Notice that everything in rung two assumed we already knew which days or scene to fetch, we handed Argo the list. A question we have not asked yet is the useful one: which days are actually missing? 
+
+- And that is where the logbook from rung one, the catalog where every ingested item was written down, is going to be maximise.
 -->
 
 ---
@@ -488,14 +514,15 @@ _(Trimmed for clarity; the full, edge-case-hardened version is in the repo.)_
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- Notice how cheap the question is: a metadata query over what we already wrote down, with no
-  re-downloading and no diffing buckets. The expensive thing only happens for days actually missing.
-- Two sources of truth for "should", same algorithm: (1) best case — an upstream source catalog you
-  diff against (exact, item-level, real cadence baked in; STAC-to-STAC reconciliation, e.g. a real
-  Sentinel/EOPF mirror); (2) when you ARE the first catalog (the demo), model acquisition cadence.
-- Cadence caveat, before the STAC-literate raise it: real missions don't image every place daily;
-  revisit cycles and clouds make some gaps legitimate — so model cadence, not the calendar. The demo
-  uses daily cadence so the idea stays visible. Algorithm identical: expected − present = fetch.
+**"At rung three, the logbook wakes up. It stops being a passive record of what happened, and it starts telling you what to do next."**
+
+- In the companion repo, we created a small function that will `find_gaps` . It will look across the window of dates we want to ingest, find the data we already have by querying STAC and anything expected but missing is a gap.
+
+- Cheap: We are not re-downloading anything, not diffing files in a bucket; we are just asking the catalog, through a database query over metadata we already wrote down. It is  fast and exact, and scale well. The expensive part, actually fetching the data, only happens for the days that are genuinely missing.
+
+- "What should be here" can come from two places. The best case is when there is an authoritative *source* catalog upstream, then you diff source against target, and the gaps are exact, item by item, with the real acquisition cadence already baked in; you never have to model anything. That is essentially STAC-to-STAC reconciliation, and it is how I used it in the my current project.
+
+- When you are instead the *first* catalog for the data, as in the companion repo there is no upstream to diff against, so you have to model what should exist.
 -->
 
 ---
@@ -529,10 +556,9 @@ Exactly those missing days go back into rung 2's fan-out. We don't re-ingest the
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- The lovely part: exactly those missing days go back into rung 2's fan-out. No re-ingesting the window,
-  no redoing finished work, only the gaps.
-- The terminal still on the right is the demo repo's own output (`make demo STAGE=03`): the catalog has
-  holes, find_gaps names them, the pipeline fills precisely those days and nothing else.
+**"And then comes the part I really like. We feed exactly those missing days back into the fan-out from rung two."** 
+
+- We do not re-ingest the whole window, and we do not redo work that is already done; we ingest only the gaps.
 -->
 
 ---
@@ -546,25 +572,20 @@ class: text-center
 
 # Idempotent + self-correcting
 
-A day that used to slip past unnoticed now **gets caught and refilled on the next run**.
-
 _Idempotent: run it again with nothing missing, and nothing happens. Safe to run on a schedule forever._
 
-**Same script. The pipeline around it now tracks what landed.**
+A day that used to slip past unnoticed now **gets caught and refilled on the next run**.
+
+Same processing script. The pipeline around it now tracks what landed.
 
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
-- Idempotent, plainly: nothing missing → nothing happens. Safe to run on a schedule forever.
-- Why this is the rung you love most: you used to track ingestion with "done" marker files in storage —
-  and they lied (a marker only says a process *thought* it finished). You tore them out and asked the
-  catalog directly: is the item there? Answerable from any machine, any time, no shared state. You'd done
-  exactly this at sea — the glider archive used the catalog as the record, no markers. Same idea ~15 years
-  and a career apart; that's the moment you stopped feeling like a beginner. The intelligence isn't in the
-  fetch code (still the rung-0 one) — it's in the catalog knowing what it ought to contain.
-- Tie back to the opening: a day that used to slip past now gets refilled on the next run, with no email
-  and no scramble. That's the difference between a pipeline you babysit and one you can trust.
-- Per-collection: every mission, every region, watched independently. Through-line, second telling.
+**"Two properties fall out of this, idempotent and self-correcting"**
+
+The first, idempotent means that if you run it again when nothing is missing, it does nothing, so it is safe to run on a schedule forever.
+
+By self-correcting, I mean that a day of data or some scene are not processed during a day for a reason or another, they do not stay missing: the next scheduled run asks the logbook what is gone, sees the hole, and fill them
 -->
 
 ---
@@ -580,7 +601,7 @@ dim: true
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
-- Keep it brief; the main ideas are already in place.
+**Rung four. The pipeline already heals itself; what it cannot yet do is show you that it did. So this last rung simply give an example of how to make the healing visible.**
 -->
 
 ---
@@ -607,18 +628,15 @@ class: text-center
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- One glance: the health of the whole window, every collection side by side. Filled cell = landed;
-  slashed cell = gap. The shape carries it too, so it reads even without colour. (The still shows the
-  seeded demo window; the live report scales the same grid wider; don't claim "months" over a two-week still.)
-- Provenance, said once: this is rendered from the workflow history Argo already keeps — no Prometheus
-  in core. Grafana / coverage maps are the prod profile; you don't need them to SEE your gaps. The
-  ladder keeps going past here, but the shape is set: same unit of work, more capability around it.
-- The small terminal thumbnail (labelled `make demo STAGE=04`) is just the demo-repo anchor: "the
-  pretty grid is rendered straight from that command's output." Point at it once; don't read it.
+**"The centrepiece is a daily report, with a gap heatmap at its heart: a calendar grid, one cell per day, per collection."**
+
+- In the companion repo I used filled cells to indicate that the day landed while slashed cells indicate gaps. In this example you see the health of the whole window, every collection side by side.
+
+- Provenance: This is all built from the workflow history Argo already keeps, so there is no extra metrics stack in the core. In a production environment you would certainly want to wire this in Prometheus and Grafana for live dashboards, but **you do not need any of that to see your gaps** only the logbook you have had since rung one, drawn as a grid.
 -->
 
 ---
-layout: two-cols
+layout: default
 ---
 
 <div class="rung-kicker rung4">Rung 4 · Observability · in production</div>
@@ -627,26 +645,46 @@ layout: two-cols
 
 <img :src="'./ladder-rung4.svg'" class="corner-ladder" alt="you are here: rung 4" />
 
-<div class="text-sm rounded-lg p-4 mt-4" style="background:#0d1117; color:#c9d1d9; border:1px solid #30363d; font-family:var(--slidev-code-font,monospace)">
-  <p class="m-0 font-700 text-base">📡 Daily Metrics Report — 2026-03-06</p>
-  <p class="m-0 text-xs" style="color:#8b949e">opened by github-actions · label: <span style="background:#5a1e1e;color:#ffb4b4;border-radius:3px;padding:0 4px">daily-metrics-report</span></p>
-  <p class="mt-2 mb-3 text-xs font-700" style="color:#ffb4b4">🔴 ALERT — errors or failed items detected</p>
-  <div class="text-xs leading-5" style="color:#c9d1d9">
-    <span style="color:#8b949e">Workflows</span> 31 &nbsp;·&nbsp; <span style="color:#8b949e">Collections</span> 4 &nbsp;·&nbsp; <span style="color:#8b949e">Expected</span> 6,247 &nbsp;·&nbsp; <span style="color:#ffa657">Failed 24 ⚠</span> &nbsp;·&nbsp; <span style="color:#ff7b72">HTTP errors 1,308 ⚠</span> &nbsp;·&nbsp; <span style="color:#ffa657">Retries 1,914 ⚠</span> &nbsp;·&nbsp; Downloaded 2.8 TB<br/>
-    <div class="mt-1"><span style="color:#8b949e">geo-imager · IR</span> 142 err &nbsp;·&nbsp; <span style="color:#8b949e">geo-imager · FD</span> 487 err &nbsp;·&nbsp; <span style="color:#8b949e">geo-imager · HR</span> 263 err &nbsp;·&nbsp; <span style="color:#8b949e">polar · ocean-colour</span> 416 err</div>
-    <div class="mt-1" style="color:#8b949e">auth-svc · 09:59 UTC · HTTP 500 ×9 · 9 retries · 0 MB &nbsp;<span style="color:#58a6ff">[logs ↗]</span></div>
-  </div>
-</div>
+<div class="flex flex-row gap-6 items-start mt-4">
 
+  <div class="text-x flex-1" style="text-align:left">
+
+  Same Rung 4 move but on a **real multi-mission EO pipeline** and adding automation from a scheduled GitHub Action. Every morning it:
+  1. scraped the new item metrics that our Argo pods were writing to S3,
+  2. rendered a self-contained HTML report with Plotly charts,
+  3. and packaged this report as a labelled issue in a "monitoring" repo
+
+  </div>
+
+  <div class="text-normal rounded-lg p-2 flex-1" style="background:#0d1117; color:#c9d1d9; border:1px solid #30363d; font-family:var(--slidev-code-font,monospace)">
+    <p class="m-0 font-700 text-base">📡 Daily Metrics Report — 2026-03-06</p>
+    <p class="m-0 mt-1 text-xs" style="color:#8b949e">opened by github-actions · label: <span style="background:#5a1e1e;color:#ffb4b4;border-radius:3px;padding:0 4px">daily-metrics-report</span></p>
+    <p class="mt-4 mb-4 text-xs font-700" style="color:#ffb4b4">🔴 ALERT — errors or failed items detected</p>
+    <div class="text-xs" style="color:#c9d1d9">
+      <div class="flex flex-wrap gap-x-4 gap-y-1 leading-6">
+        <span><span style="color:#8b949e">Workflows</span> 31</span>
+        <span><span style="color:#8b949e">Collections</span> 4</span>
+        <span><span style="color:#8b949e">Expected</span> 6,247</span>
+        <span style="color:#ffa657">Failed 24 ⚠</span>
+        <span style="color:#ff7b72">HTTP errors 1,308 ⚠</span>
+        <span style="color:#ffa657">Retries 1,914 ⚠</span>
+        <span>Downloaded 2.8 TB</span>
+      </div>
+      <div class="flex flex-wrap gap-x-4 gap-y-1 leading-6 mt-4">
+        <span><span style="color:#8b949e">geo-imager · IR</span> 142 err</span>
+        <span><span style="color:#8b949e">geo-imager · FD</span> 487 err</span>
+        <span><span style="color:#8b949e">geo-imager · HR</span> 263 err</span>
+        <span><span style="color:#8b949e">polar · ocean-colour</span> 416 err</span>
+      </div>
+      <div class="mt-4" style="color:#8b949e">auth-svc · 09:59 UTC · HTTP 500 ×9 · 9 retries · 0 MB &nbsp;<span style="color:#58a6ff">[logs ↗]</span></div>
+    </div>
+  </div>
+
+</div>
+<!-- 
 ::right::
 
 <div class="flex flex-col justify-center h-full gap-6 pl-4">
-
-<div class="text-xl">
-
-Same Rung 4 move, on a **real multi-mission EO pipeline**: built from the **metrics the Argo workflows already write to S3** — the production version of the demo's gap report.
-
-</div>
 
 <div class="p-5 rounded-xl" style="background:#1e293b; color:white; border-left:4px solid #E69F00">
   <p class="text-xs font-700 uppercase tracking-wide m-0" style="color:#E69F00;">The morning it earned its keep</p>
@@ -654,27 +692,32 @@ Same Rung 4 move, on a **real multi-mission EO pipeline**: built from the **metr
   <p class="text-sm m-0 mt-3" style="color:#94a3b8;">The report didn't heal the pipeline. It showed me <em>where</em> to.</p>
 </div>
 
-</div>
+</div> -->
 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- This is the production version of the heatmap pattern: same provenance ("built from the workflow
-  history the Argo pods already write, just to S3 instead of the Argo UI"), but on a real multi-collection
-  EO ingest pipeline (geostationary imagers + a polar ocean-colour mission). Don't name the operator/project.
-- How it worked: a GitHub Action ran on a daily cron, scraped the per-item metrics each Argo pod had
-  written to S3, rendered a self-contained HTML/Plotly report, and opened it as a labelled issue —
-  no dashboard to log into, the report came to you. Same ladder; much larger world.
-- The payoff story (the numbers are safe to quote — W9 `2026-W9.md`):
-  "One morning it showed 1,308 HTTP errors in 24 hours. That number pointed me straight at the
-  cause: every one of the twenty parallel pods was re-authenticating from scratch instead of reusing
-  a valid token. One fix later, the error rate went from around 14% to under 1%."
-- CAUTION — the causal chain: report *surfaced* → found auth bug → fixed → 14%→<1%.
-  NEVER say "the report fixed it" or "the report dropped the error rate." The auth fix was decisive.
-- This bridges synthetic→real without duplicating the EOPF production reveal in §7 — that one is
-  about satellite-data catalog scale; this one is about operational monitoring. Different angle.
-- Keep past tense: the daily schedule is now on-demand (the need passed). "It ran every morning on
-  a schedule" — not "it posts every morning."
+**"Here is a more advanced version of the demo's heatmap gap I showed you on the precedent slide."**
+
+- I built it mostly because I wanted to understand what was the reasons for the workflows failures I could observed and have an easy way to share these findings with the upstream data services.
+
+- On a recent project I worked on data ingestion pipelines for multiples EO missions. Early one I encountered a lot of network issues when trying to stream the data from upstream servies so I added a lot of metrics in my processing script and wired up a scheduled GitHub Action. 
+Every morning it: 
+1. scraped the new item metrics that our Argo pods were writing to S3, 
+2. rendered a self-contained HTML report with Plotly charts, 
+3. and package this report as a labelled issue in a "monitoring" repository. 
+
+No heavy observability stack was needed. The report came to me, with direct links to each failing pod's archived logs.
+
+
+- Once it was running, it proved its value very quickly. One morning the report showed one thousand, three hundred and eight HTTP errors in twenty-four hours. That report did not fix anything by itself but it pointed me straight at the cause: a bug that had been introduce in a recent code change.
+In this bug, every one of the twenty parallel pods was re-authenticating from scratch on startup, hammering the upstream authentication service, instead of reusing a valid token. One
+fix later, the error rate went from around fourteen percent to under one percent.
+
+This report did not heal the pipeline. It showed me exactly where to look to fix it.
+
+> _(beat)_ That is the thing about observability: it is not decoration. You build it before you need it —
+> and when something breaks in a way retries cannot catch, there is already a place to look.
 -->
 
 ---
@@ -688,41 +731,22 @@ The same ingest step at every rung. What grew was how much the pipeline heals on
 
 There are two distinct levels of that healing, and it is worth separating them out.
 
-<LogoHorPos position="top-left" height="30px" />
-
-<!--
-- Before naming the two levels: invite the diagnostic. "This ladder is not aspirational — you can
-  place your own work on it. When I place my past work on it, most of it sat at rung 0 or 1. And the
-  next rung is usually an afternoon away. So: which rung are you on?"
-- Then pivot: "Two distinct kinds of healing — let me name them separately, because they are easy to blur."
--->
-
----
-layout: default
----
-
-# Two levels of self-**correction**
 
 | Level | Failure | Who fixes it | Rung |
 |-------|---------|--------------|------|
 | **Item** | a run fails transiently | Argo **retries** it, automatically | 1 |
 | **System** | a whole day never landed | the logbook **detects + refills**; the report **surfaces** it | 3 + 4 |
 
-> It heals the predictable; genuinely-absent data and systemic faults are **surfaced** for a human to judge. The pipeline never invents data.
 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- The conceptual point: name the two loops plainly, and let the clarity do the work.
-- The honest edge (panel review): "self-healing" refills only what *should* have been there; a day
-  never acquired isn't a missed retry. The cadence model knows that; the report shows a human anything
-  systemic. We don't invent data.
-- Item-level the machine fixes alone. System-level the machine finds and a human decides.
-- Why the split matters: the machine absorbing blips is what *earns* your attention for genuine problems.
-  A pipeline that fired at every hiccup would just get muted, no better than silent cron.
-- §5 outro (spoken before advancing to EOPF slide): "The unit of work never changes; only the ladder
-  around it grows. I climbed this ladder twice — once at sea, with cron and MATLAB, and once again
-  this year. You only have to climb it once."
+**"So: that is the whole ladder. The same unit of work, unchanged, at every rung. What grew was how much the pipeline heals on its own."**
+
+**"What we have built in term of self-healing is really two different things, and I think they are worth distinguishing."**
+
+- Item-level (rung 1): a run fails transiently → Argo retries → nobody involved. Machine fixes alone.
+- System-level (rungs 3+4): a whole day never landed → logbook detects + refills → report surfaces the pattern → human steps in.
 -->
 
 ---
@@ -733,14 +757,14 @@ layout: two-cols
 
 <div class="text-xl mt-6">
 
-The exact same patterns — Argo orchestrating an ingest function, a STAC catalog as the logbook — deployed at Copernicus scale.
+The exact same patterns: Argo orchestrating an ingest function, a STAC catalog as the logbook, but deployed at Copernicus scale.
 
 <div flex items-center gap-3 my-2>
   <img :src="'./eopf-explorer-logo.png'" class="h-10" alt="EOPF Explorer logo" />
   <strong><a href="https://explorer.eopf.copernicus.eu/">explorer.eopf.copernicus.eu</a></strong>
 </div>
 
-_Ingestion feeds a catalog; the visualisation and analysis layers come next — and the same orchestration moves wrap those steps too._
+_Ingestion feeds a catalog; the visualisation and analysis layers come next : and the same orchestration moves wrap those steps too._
 
 </div>
 
@@ -753,10 +777,9 @@ _Ingestion feeds a catalog; the visualisation and analysis layers come next — 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- The credibility beat: the demos ran in a synthetic world — this is what the same patterns look like at
-  Copernicus scale. A real deployed catalog for Sentinel-2 data. Same ladder; much larger world.
-- Honest scope: ingestion gets data ready for the algorithm; ARD / cloud-mask / indices start where it
-  ends. The same orchestration moves wrap those steps too.
+**"The demos run synthetic missions. For real satellite data you can visit the EOPF Copernicus Explorer website."**
+
+- Same patterns: Argo orchestrating an ingest function, STAC catalog as the logbook, at Copernicus scale.
 -->
 
 ---
@@ -784,8 +807,11 @@ layout: default
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-- The community is here, this week. Two workshops dive exactly into this ecosystem.
-- Say the room and day clearly — people will want to add it to their schedule.
+**"And if you want to go hands-on with exactly this ecosystem, two workshops at this conference dive right into it."**
+
+- Thursday 2 Jul · 9:00 · Room A13: eoAPI + STAC for Earth Data at Scale (Felix Delattre).
+- Friday 3 Jul · 9:00 · Room 059: EOPF Zarr Explorer — GeoZarr, TiTiler (Ahmed Behairi, EOX).
+- Say room and day clearly — people will want to add it to their schedule.
 -->
 
 ---
@@ -795,46 +821,49 @@ image: /images/theme/landsat8-klyuchevskaya-kamchatka.jpg
 
 # Questions?
 
-_one rung at a time_
+_Give it a try:_
 
-**github.com/lhoupert/argo-stac-eo-pipeline**
-
-`make up && make demo STAGE=01` ->  the whole ladder, on your laptop, with Docker.
-
-<div mt-6>
-  <img :src="'./repo-qr.png'" class="h-44" alt="QR code linking to the talk's GitHub repository" />
+<div flex items-center gap-6 mt-4>
+  <img :src="'/repo-qr.png'" class="h-34 w-auto shrink-0" alt="QR code linking to the talk's GitHub repository" />
+  <div flex items-center gap-2>
+    <GitHubIcon size="18" />
+    <span class="text-base font-600"><a href="https://github.com/lhoupert/argo-stac-eo-pipeline">github.com/lhoupert/argo-stac-eo-pipeline</a> </span>
+  </div>
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
 
+And run 
+`make up && make demo STAGE=01` 
+
+-> you will get the whole ladder running on your laptop or through a _`.devcontainer`_
+
 <!--
-- Leave this up for Q&A. Repo open in a backup tab; never depend on a live cluster.
-- Pause before answering; repeat the question so the room hears it.
-- On production-scale Argo: be honest — "I've run this at laptop scale; I'd start from the prod
-  profile but don't have war stories at volume."
-- Likely questions: ingestion vs ARD boundary; how the synthetic world maps to real missions;
-  cost/ops of running Argo; why not Airflow? (→ advance to the next slide if that comes up).
+Any questions? 
+
+As I mentioned several time in this talk, **you can find everything I have shown in the companion repository below.**
 -->
 
 ---
 layout: default
 ---
 
-# Why Argo, and the neighbours
+# Why Argo, and the related projects
 
 The ladder is **orchestrator-agnostic**: Airflow or Prefect could climb it too. Argo buys K8s-native
 **container-per-step**, first-class **fan-out**, no separate scheduler DB.
 
-**Neighbours:** cirrus-geo · stactools / stac-task · VEDA · openEO _(processing side)_
+**Related projects:**
+
+- **cirrus-geo** — AWS-native STAC pipeline framework (serverless orchestration on Lambda/Batch).
+- **stactools / stac-task** — item builders: turn raw assets into well-formed STAC items.
+- **VEDA** — NASA's open EO data platform for science and analysis at scale.
+- **openEO** — standard API for EO _processing_ across back-ends (the compute side, not ingestion).
 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-  [BACKUP — advance here only if "why not Airflow / Prefect?" comes up in Q&A]
-- The ladder is orchestrator-agnostic; Argo wins on three concrete points: container-per-step
-  isolation, first-class fan-out (withItems), no separate scheduler database to operate.
-- Neighbours worth naming: cirrus-geo for the AWS-native path; stactools / stac-task for item
-  builders; VEDA for the NASA deployment; openEO on the processing side.
-- Close with the through-line: none of these pieces are new — the contribution is a path a solo
-  researcher can walk.
+- Ladder is orchestrator-agnostic; Argo wins: container-per-step isolation, first-class fan-out (`withItems`), no separate scheduler DB.
+- Neighbours: cirrus-geo (AWS-native), stactools / stac-task (item builders), VEDA (NASA), openEO (processing).
+- Close: none of these pieces are new — the contribution is a path a solo researcher can actually walk.
 -->
