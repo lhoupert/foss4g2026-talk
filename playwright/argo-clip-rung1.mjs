@@ -11,14 +11,16 @@
 //   node docs/slides/playwright/argo-clip-rung1.mjs
 // Set REUSE=1 to record the latest existing rung1 workflow instead of submitting a new one (fast
 // iteration; no fresh cluster needed — the finished graph still shows ✗→✓).
-import { chromium } from "playwright";
+import { chromium } from "playwright-chromium";
 import { execSync } from "node:child_process";
 import { mkdirSync } from "node:fs";
 
-const ARGO = process.env.ARGO_UI || "https://localhost:2746";
+const ARGO = process.env.ARGO_UI || "http://localhost:2746";
 const NS = process.env.NS || "eo";
-const OUT = "docs/slides/clips/rung1-retry.gif";
-const RAW = "docs/slides/clips/_raw";
+// Companion repo (sibling dir) holds the cluster + stage manifests; this deck holds the assets.
+const WF = process.env.WF || "../argo-stac-eo-pipeline/stages/01-argo-retries/workflows/ingest.yaml";
+const OUT = process.env.OUT || "public/clips/rung1-retry.gif";
+const RAW = process.env.RAW || "public/clips/_raw";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const argo = (a) => execSync(`argo ${a} -n ${NS}`, { encoding: "utf8" });
@@ -36,7 +38,7 @@ if (process.env.REUSE) {
   name = argo(`list -o name`).split("\n").find((l) => l.startsWith("rung1-ingest"));
   console.log("reusing", name);
 } else {
-  name = argo(`submit stages/01-argo-retries/workflows/ingest.yaml -o name`).trim();
+  name = argo(`submit ${WF} -o name`).trim();
   console.log("submitted", name, "— waiting for it to finish…");
   for (let i = 0; i < 60; i++) {
     if (/Succeeded|Failed|Error/.test(phase(name))) break;
