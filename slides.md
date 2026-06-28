@@ -2,7 +2,7 @@
 theme: ./theme
 title: From Cron Job to Self-Healing Pipeline
 info: |
-  FOSS4G Europe 2026. A maturity ladder for Earth-observation ingestion.
+  FOSS4G Europe 2026. My journey up the maturity ladder for Earth-observation ingestion.
   Talk by Loïc Houpert (Development Seed).
   Companion repo: github.com/lhoupert/argo-stac-eo-pipeline
 highlighter: shiki
@@ -18,7 +18,7 @@ image: /images/theme/landsat9-kangerdlugssuaq-greenland.jpg
 # From Cron Job to Self-Healing Pipeline
 
 ::subtitle::
-An example of a maturity ladder for Earth-observation ingestion
+My journey up the maturity ladder for Earth-observation ingestion
 
 <DecorativeRectangle
   width="46%"
@@ -67,7 +67,7 @@ class: text-center
   <img :src="'./ladder.svg'" class="h-100 w-auto object-contain" alt="The maturity ladder, rungs 0 to 4" />
 </div>
 
-Five rungs, from a laptop cron job at the bottom to a pipeline that fills its own gaps at the top.
+Five rungs, the path I climbed, from a laptop cron job at the bottom to a pipeline that fills its own gaps at the top.
 
 <LogoHorPos position="top-left" height="30px" />
 
@@ -485,6 +485,7 @@ dim: true
 
 <!--
 - _SLOW DOWN_
+
 - Notice that everything in rung two assumed we already knew which days or scene to fetch, we handed Argo the list. A question we have not asked yet is the useful one: which days are actually missing? 
 
 - And that is where the logbook from rung one, the catalog where every ingested item was written down, is going to be maximise.
@@ -555,7 +556,7 @@ Exactly those missing days go back into rung 2's fan-out. We don't re-ingest the
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-**"And then comes the part I find genuinely lovely. We feed exactly those missing days back into the fan-out from rung two."** 
+**"And then comes the part I really like. We feed exactly those missing days back into the fan-out from rung two."** 
 
 - We do not re-ingest the whole window, and we do not redo work that is already done; we ingest only the gaps.
 -->
@@ -600,7 +601,7 @@ dim: true
 <LogoHorNegMono position="bottom-right" height="30px" />
 
 <!--
-Rung four. The pipeline already heals itself; what it cannot yet do is show you that it did. So this last rung simply give an example of how to make the healing visible.
+**Rung four. The pipeline already heals itself; what it cannot yet do is show you that it did. So this last rung simply give an example of how to make the healing visible.**
 -->
 
 ---
@@ -644,21 +645,41 @@ layout: default
 
 <img :src="'./ladder-rung4.svg'" class="corner-ladder" alt="you are here: rung 4" />
 
-<div class="text-xl">
+<div class="flex flex-row gap-6 items-start mt-4">
 
-Same Rung 4 move, on a **real multi-mission EO pipeline**: built from the **metrics the Argo workflows already write to S3**, the production version of the demo's gap report.
+  <div class="text-x flex-1" style="text-align:left">
 
-</div>
+  Same Rung 4 move but on a **real multi-mission EO pipeline** and adding automation from a scheduled GitHub Action. Every morning it:
+  1. scraped the new item metrics that our Argo pods were writing to S3,
+  2. rendered a self-contained HTML report with Plotly charts,
+  3. and packaged this report as a labelled issue in a "monitoring" repo
 
-<div class="text-sm rounded-lg p-4 mt-4" style="background:#0d1117; color:#c9d1d9; border:1px solid #30363d; font-family:var(--slidev-code-font,monospace)">
-  <p class="m-0 font-700 text-base">📡 Daily Metrics Report — 2026-03-06</p>
-  <p class="m-0 text-xs" style="color:#8b949e">opened by github-actions · label: <span style="background:#5a1e1e;color:#ffb4b4;border-radius:3px;padding:0 4px">daily-metrics-report</span></p>
-  <p class="mt-2 mb-3 text-xs font-700" style="color:#ffb4b4">🔴 ALERT — errors or failed items detected</p>
-  <div class="text-xs leading-5" style="color:#c9d1d9">
-    <span style="color:#8b949e">Workflows</span> 31 &nbsp;·&nbsp; <span style="color:#8b949e">Collections</span> 4 &nbsp;·&nbsp; <span style="color:#8b949e">Expected</span> 6,247 &nbsp;·&nbsp; <span style="color:#ffa657">Failed 24 ⚠</span> &nbsp;·&nbsp; <span style="color:#ff7b72">HTTP errors 1,308 ⚠</span> &nbsp;·&nbsp; <span style="color:#ffa657">Retries 1,914 ⚠</span> &nbsp;·&nbsp; Downloaded 2.8 TB<br/>
-    <div class="mt-1"><span style="color:#8b949e">geo-imager · IR</span> 142 err &nbsp;·&nbsp; <span style="color:#8b949e">geo-imager · FD</span> 487 err &nbsp;·&nbsp; <span style="color:#8b949e">geo-imager · HR</span> 263 err &nbsp;·&nbsp; <span style="color:#8b949e">polar · ocean-colour</span> 416 err</div>
-    <div class="mt-1" style="color:#8b949e">auth-svc · 09:59 UTC · HTTP 500 ×9 · 9 retries · 0 MB &nbsp;<span style="color:#58a6ff">[logs ↗]</span></div>
   </div>
+
+  <div class="text-normal rounded-lg p-2 flex-1" style="background:#0d1117; color:#c9d1d9; border:1px solid #30363d; font-family:var(--slidev-code-font,monospace)">
+    <p class="m-0 font-700 text-base">📡 Daily Metrics Report — 2026-03-06</p>
+    <p class="m-0 mt-1 text-xs" style="color:#8b949e">opened by github-actions · label: <span style="background:#5a1e1e;color:#ffb4b4;border-radius:3px;padding:0 4px">daily-metrics-report</span></p>
+    <p class="mt-4 mb-4 text-xs font-700" style="color:#ffb4b4">🔴 ALERT — errors or failed items detected</p>
+    <div class="text-xs" style="color:#c9d1d9">
+      <div class="flex flex-wrap gap-x-4 gap-y-1 leading-6">
+        <span><span style="color:#8b949e">Workflows</span> 31</span>
+        <span><span style="color:#8b949e">Collections</span> 4</span>
+        <span><span style="color:#8b949e">Expected</span> 6,247</span>
+        <span style="color:#ffa657">Failed 24 ⚠</span>
+        <span style="color:#ff7b72">HTTP errors 1,308 ⚠</span>
+        <span style="color:#ffa657">Retries 1,914 ⚠</span>
+        <span>Downloaded 2.8 TB</span>
+      </div>
+      <div class="flex flex-wrap gap-x-4 gap-y-1 leading-6 mt-4">
+        <span><span style="color:#8b949e">geo-imager · IR</span> 142 err</span>
+        <span><span style="color:#8b949e">geo-imager · FD</span> 487 err</span>
+        <span><span style="color:#8b949e">geo-imager · HR</span> 263 err</span>
+        <span><span style="color:#8b949e">polar · ocean-colour</span> 416 err</span>
+      </div>
+      <div class="mt-4" style="color:#8b949e">auth-svc · 09:59 UTC · HTTP 500 ×9 · 9 retries · 0 MB &nbsp;<span style="color:#58a6ff">[logs ↗]</span></div>
+    </div>
+  </div>
+
 </div>
 <!-- 
 ::right::
@@ -676,27 +697,27 @@ Same Rung 4 move, on a **real multi-mission EO pipeline**: built from the **metr
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-**"Here is the same move, on a real pipeline."**
+**"Here is a more advanced version of the demo's heatmap gap I showed you on the precedent slide."**
 
-- On a recent project I worked on data ingestion pipelines for multiples EO missions. Early one I encountered a lot of network issues when trying to stream the data from upstream servies so I added a lot of metrics in my processing script and wired up a scheduled GitHub Action. Every morning it scraped the new item metrics that our Argo pods was writing to S3, rendered a
-self-contained HTML report with Plotly charts, and opened it as a labelled issue in a "monitoring" repository. No heavy observability stack was needed. The report came to me, with direct links to each failing pod's archived logs.
+- I built it mostly because I wanted to understand what was the reasons for the workflows failures I could observed and have an easy way to share these findings with the upstream data services.
 
-- This is a more advanced version of the demo's gap heatmap I showed you on the precedent slight. running across four real satellite collections, ingesting terabytes a day across multiple compute clusters. I built mostly because I wanted to understand what was the reasons for the workflows failures I could observed and have an easy way to share these findings with the upstream data services.
+- On a recent project I worked on data ingestion pipelines for multiples EO missions. Early one I encountered a lot of network issues when trying to stream the data from upstream servies so I added a lot of metrics in my processing script and wired up a scheduled GitHub Action. 
+Every morning it: 
+1. scraped the new item metrics that our Argo pods were writing to S3, 
+2. rendered a self-contained HTML report with Plotly charts, 
+3. and package this report as a labelled issue in a "monitoring" repository. 
 
-- Once it was running, it proved its value very quickly. One morning the report showed one thousand, three hundred and eight HTTP errors in twenty-four hours. That number did not fix anything by itself but it pointed me straight at the cause: a bug every one of the twenty parallel pods was re-authenticating
-from scratch on startup, hammering the upstream auth service, instead of reusing a valid token. One
+No heavy observability stack was needed. The report came to me, with direct links to each failing pod's archived logs.
+
+
+- Once it was running, it proved its value very quickly. One morning the report showed one thousand, three hundred and eight HTTP errors in twenty-four hours. That report did not fix anything by itself but it pointed me straight at the cause: a bug that had been introduce in a recent code change.
+In this bug, every one of the twenty parallel pods was re-authenticating from scratch on startup, hammering the upstream authentication service, instead of reusing a valid token. One
 fix later, the error rate went from around fourteen percent to under one percent.
 
-This report did not heal the pipeline. It showed me exactly where to.
+This report did not heal the pipeline. It showed me exactly where to look to fix it.
 
 > _(beat)_ That is the thing about observability: it is not decoration. You build it before you need it —
 > and when something breaks in a way retries cannot catch, there is already a place to look.
-
-
-- W9 incident: one morning, 1,308 HTTP errors in 24h. Pointed straight at the cause: 20 parallel pods re-authenticating from scratch on startup instead of reusing a valid token.
-- One fix later: ~14% → under 1% error rate.
-- CAUTION: report *surfaced* → found auth bug → fixed. NEVER say "the report dropped the rate."
-- Callback to rung 1: observability isn't decoration — build it BEFORE you need it.
 -->
 
 ---
@@ -710,38 +731,22 @@ The same ingest step at every rung. What grew was how much the pipeline heals on
 
 There are two distinct levels of that healing, and it is worth separating them out.
 
-<LogoHorPos position="top-left" height="30px" />
-
-<!--
-**"So: that is the whole ladder. The same unit of work, unchanged, at every rung — what grew was how much the pipeline heals on its own."**
-
-- Diagnostic invite: "When I place my past work on it, almost all of it sat at rung 0 or 1. The next rung is usually an afternoon away — not a rewrite, not learning K8s. Which rung are you on?"
-- Then pivot: "Two distinct kinds of healing — let me name them separately, because they're easy to blur."
--->
-
----
-layout: default
----
-
-# Two levels of self-**correction**
 
 | Level | Failure | Who fixes it | Rung |
 |-------|---------|--------------|------|
 | **Item** | a run fails transiently | Argo **retries** it, automatically | 1 |
 | **System** | a whole day never landed | the logbook **detects + refills**; the report **surfaces** it | 3 + 4 |
 
-> It heals the predictable; genuinely-absent data and systemic faults are **surfaced** for a human to judge. The pipeline never invents data.
 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-**"What we have built is really two different things, and they are easy to blur together."**
+**"So: that is the whole ladder. The same unit of work, unchanged, at every rung. What grew was how much the pipeline heals on its own."**
+
+**"What we have built in term of self-healing is really two different things, and I think they are worth distinguishing."**
 
 - Item-level (rung 1): a run fails transiently → Argo retries → nobody involved. Machine fixes alone.
 - System-level (rungs 3+4): a whole day never landed → logbook detects + refills → report surfaces the pattern → human steps in.
-- Honest edge: "self-healing" only refills what *should* have been there. A day never acquired isn't a missed retry. We never invent data.
-- Why the split matters: machine absorbing blips earns your attention for genuine problems. A pipeline that fired at every hiccup gets muted — no better than the silent crontab.
-- Through-line #3: "I climbed this ladder twice — once at sea with cron and MATLAB, once again this year. You only have to climb it once."
 -->
 
 ---
@@ -752,14 +757,14 @@ layout: two-cols
 
 <div class="text-xl mt-6">
 
-The exact same patterns — Argo orchestrating an ingest function, a STAC catalog as the logbook — deployed at Copernicus scale.
+The exact same patterns: Argo orchestrating an ingest function, a STAC catalog as the logbook, but deployed at Copernicus scale.
 
 <div flex items-center gap-3 my-2>
   <img :src="'./eopf-explorer-logo.png'" class="h-10" alt="EOPF Explorer logo" />
   <strong><a href="https://explorer.eopf.copernicus.eu/">explorer.eopf.copernicus.eu</a></strong>
 </div>
 
-_Ingestion feeds a catalog; the visualisation and analysis layers come next — and the same orchestration moves wrap those steps too._
+_Ingestion feeds a catalog; the visualisation and analysis layers come next : and the same orchestration moves wrap those steps too._
 
 </div>
 
@@ -772,11 +777,9 @@ _Ingestion feeds a catalog; the visualisation and analysis layers come next — 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-**"The demos run in a synthetic world — made-up missions, laptop-sized data. For real satellite data you can visit the EOPF Copernicus Explorer website."**
+**"The demos run synthetic missions. For real satellite data you can visit the EOPF Copernicus Explorer website."**
 
-- Resolves the rung-1 promise: "real Sentinel-2 at the end, I promise." This is it.
-- Same patterns — Argo orchestrating an ingest function, STAC catalog as the logbook — at Copernicus scale.
-- Honest scope: ingestion gets data ready for the algorithm; ARD/cloud-mask/indices start where it ends — the same orchestration moves wrap those steps too.
+- Same patterns: Argo orchestrating an ingest function, STAC catalog as the logbook, at Copernicus scale.
 -->
 
 ---
@@ -833,35 +836,33 @@ _Give it a try:_
 And run 
 `make up && make demo STAGE=01` 
 
--> you will get the whole ladder running on your laptop or through .devcontainer
+-> you will get the whole ladder running on your laptop or through a _`.devcontainer`_
 
 <!--
-**"Everything I have shown — all five rungs — lives in one repository."**
+Any questions? 
 
-- Leave this up for Q&A. Repo open in a backup tab; never depend on a live cluster.
-- Pause before answering; repeat the question back so the room hears it.
-- Likely questions: ingestion vs ARD boundary; synthetic → real missions; cost/ops of Argo; why not Airflow? (→ advance to next slide).
-- War-story card if asked: RabbitMQ — 2,700 events queued, only 43 ran, nothing told us. Purest "no second place to look" — literally the rung-1 lesson.
-- Prod-scale Argo: "I've run this at laptop scale; I'd start from the prod profile but don't have war stories at volume." Don't bluff; §3 positioning is your cover.
+As I mentioned several time in this talk, **you can find everything I have shown in the companion repository below.**
 -->
 
 ---
 layout: default
 ---
 
-# Why Argo, and the neighbours
+# Why Argo, and the related projects
 
 The ladder is **orchestrator-agnostic**: Airflow or Prefect could climb it too. Argo buys K8s-native
 **container-per-step**, first-class **fan-out**, no separate scheduler DB.
 
-**Neighbours:** cirrus-geo · stactools / stac-task · VEDA · openEO _(processing side)_
+**Related projects:**
+
+- **cirrus-geo** — AWS-native STAC pipeline framework (serverless orchestration on Lambda/Batch).
+- **stactools / stac-task** — item builders: turn raw assets into well-formed STAC items.
+- **VEDA** — NASA's open EO data platform for science and analysis at scale.
+- **openEO** — standard API for EO _processing_ across back-ends (the compute side, not ingestion).
 
 <LogoHorPos position="top-left" height="30px" />
 
 <!--
-**"One positioning line I want to say out loud, because it is the whole thesis."**
-
-- BACKUP — advance here only if "why not Airflow/Prefect?" comes up in Q&A.
 - Ladder is orchestrator-agnostic; Argo wins: container-per-step isolation, first-class fan-out (`withItems`), no separate scheduler DB.
 - Neighbours: cirrus-geo (AWS-native), stactools / stac-task (item builders), VEDA (NASA), openEO (processing).
 - Close: none of these pieces are new — the contribution is a path a solo researcher can actually walk.
