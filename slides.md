@@ -824,7 +824,7 @@ image: /images/theme/landsat8-klyuchevskaya-kamchatka.jpg
 _Give it a try:_
 
 <div flex items-center gap-6 mt-4>
-  <img :src="'/repo-qr.png'" class="h-34 w-auto shrink-0" alt="QR code linking to the talk's GitHub repository" />
+  <img :src="'./repo-qr.png'" class="h-34 w-auto shrink-0" alt="QR code linking to the talk's GitHub repository" />
   <div flex items-center gap-2>
     <GitHubIcon size="18" />
     <span class="text-base font-600"><a href="https://github.com/lhoupert/argo-stac-eo-pipeline">github.com/lhoupert/argo-stac-eo-pipeline</a> </span>
