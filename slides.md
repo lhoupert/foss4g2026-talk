@@ -267,7 +267,7 @@ and understands what happened, without touching your machine.
 ::right::
 
 <div h-full flex items-center justify-center pr-2>
-  <img :src="'./argo-ui-still.png'" class="max-h-100 w-auto object-contain rounded shadow-lg" alt="The Argo Workflows web UI: a workflow step graph with the failed step marked red and logs one click away" />
+  <img :src="'./argo-ui-still.png'" class="max-h-100 w-auto object-contain rounded shadow-lg" alt="The Argo Workflows web UI: the CronWorkflow run history, every scheduled run listed with its status — green ticks for success, red crosses for failures, one still running — each with its own logs a click away" />
 </div>
 
 <LogoHorPos position="top-left" height="30px" />
